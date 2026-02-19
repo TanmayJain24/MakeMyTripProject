@@ -6,10 +6,15 @@ import pageObjects.CabBookingPage;
 
 public class TC001_CabBookingLowestCharges extends BaseTest {
     @Test
-    public void TC001_CabBookingLowestCharges() {
-        CabBookingPage cabPage = new CabBookingPage(driver);
-        cabPage.enterTripDetails("Delhi", "Manali", "23/12/2019", "10:00", "SUV");
+    public void bookCabTest() {
+        CabBookingPage cabPage = new CabBookingPage(driver, wait);
+        cabPage.openCabsPage();
+        cabPage.selectFromCity("Chennai");
+        cabPage.selectToCity("Bengaluru");
+        cabPage.selectDepartureDate("Thu Feb 26 2026");
+        cabPage.selectReturnDate("Sat Feb 28 2026");
+        cabPage.selectPickupTime("10", "30", "AM");
         cabPage.searchCabs();
-        System.out.println("Lowest charges: " + cabPage.getLowestCharges());
+        cabPage.printLowestCabPrice();
     }
 }
