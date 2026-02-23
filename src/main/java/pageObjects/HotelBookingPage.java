@@ -3,18 +3,22 @@ package pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class HotelBookingPage {
+public class  HotelBookingPage {
     private WebDriver driver;
 
     // Locators
-    private By hotelSection = By.id("hotelSection");
-    private By destinationField = By.id("destination");
-    private By checkInDate = By.id("checkIn");
-    private By checkOutDate = By.id("checkOut");
-    private By searchButton = By.id("searchHotels");
+    private By hotelSection = By.cssSelector("li[data-cy='menu_Hotels']");
+
+    private By destinationField = By.cssSelector("input#city");
+    private By checkInDate = By.cssSelector("p.blackText.font18.code[data-cy='checkInDate']");
+    private By checkOutDate = By.cssSelector("p.blackText.font18.code[data-cy='checkOutDate']");
+    private By searchButton = By.cssSelector("button#hsw_search_button");
+
     private By adultDropdown = By.id("adults");
     private By childDropdown = By.id("children");
     private By hotelNames = By.cssSelector(".hotelName");
@@ -26,6 +30,7 @@ public class HotelBookingPage {
 
     public void openHotelBooking() {
         driver.findElement(hotelSection).click();
+
     }
 
     public void searchHotels(String destination, String checkIn, String checkOut) {
@@ -36,7 +41,9 @@ public class HotelBookingPage {
     }
 
     public List<String> getHotelNames() {
-        List<WebElement> hotels = driver.findElements(hotelNames);
+        List<WebElement> hotels = wait.until(ExpectedConditions.elementToBeClickable(hotelNames))
+
+
         List<String> names = new ArrayList<>();
         for (WebElement hotel : hotels) {
             names.add(hotel.getText());

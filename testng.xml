@@ -4,6 +4,7 @@
     <test name="CabBookingTests">
         <classes>
             <class name="testcases.TC001_CabBookingLowestCharges"/>
+            <class name="testcases.TC_006_Hotel"></class>
         </classes>
     </test>
 </suite>
