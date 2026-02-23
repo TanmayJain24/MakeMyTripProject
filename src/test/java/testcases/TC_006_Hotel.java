@@ -11,7 +11,7 @@ public class TC_006_Hotel extends BaseTest {
     @Test
     public void searchHotelsInManali() throws InterruptedException {
         // Create page object
-        HotelBookingPage hotelPage = new HotelBookingPage(driver);
+        HotelBookingPage hotelPage = new HotelBookingPage(driver,wait);
 
 
 

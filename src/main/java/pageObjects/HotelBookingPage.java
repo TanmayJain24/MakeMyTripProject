@@ -4,12 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class  HotelBookingPage {
     private WebDriver driver;
+    private  WebDriverWait wait;
+
 
     // Locators
     private By hotelSection = By.cssSelector("li[data-cy='menu_Hotels']");
@@ -24,8 +27,9 @@ public class  HotelBookingPage {
     private By hotelNames = By.cssSelector(".hotelName");
     private By hotelPrices = By.cssSelector(".hotelPrice");
 
-    public HotelBookingPage(WebDriver driver) {
+    public HotelBookingPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
+        this.wait =  wait;
     }
 
     public void openHotelBooking() {
@@ -41,7 +45,8 @@ public class  HotelBookingPage {
     }
 
     public List<String> getHotelNames() {
-        List<WebElement> hotels = wait.until(ExpectedConditions.elementToBeClickable(hotelNames))
+
+        List<WebElement> hotels = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(hotelNames));
 
 
         List<String> names = new ArrayList<>();
