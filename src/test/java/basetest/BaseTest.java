@@ -14,10 +14,13 @@ import utilities.ConfigReader;
 import java.time.Duration;
 
 public class BaseTest {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+    protected static WebDriver driver;
+    protected static WebDriverWait wait;
 
-    @BeforeMethod
+    //Locators
+    By closeBtn = By.xpath("//span[@role='presentation']");
+
+    @BeforeSuite
     public void setUp() {
         String browser = ConfigReader.getProperty("browser");
         String url = ConfigReader.getProperty("baseUrl");
@@ -25,6 +28,10 @@ public class BaseTest {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--disable-notifications");
+            options.addArguments("disable-infobars");
+            options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+            options.setExperimentalOption("useAutomationExtension", false);
+            options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) " + "AppleWebKit/537.36 (KHTML, like Gecko) " + "Chrome/120.0.0.0 Safari/537.36");
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("edge")) {
             EdgeOptions options = new EdgeOptions();
@@ -34,20 +41,15 @@ public class BaseTest {
             throw new IllegalArgumentException("Browser not supported: " + browser);
         }
         driver.manage().window().maximize();
-
-        // Apply waits from config.properties
         int implicitWait = Integer.parseInt(ConfigReader.getProperty("implicitWait"));
         int explicitWait = Integer.parseInt(ConfigReader.getProperty("explicitWait"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
         wait = new WebDriverWait(driver, Duration.ofSeconds(explicitWait));
         driver.get(url);
         handleLoginPopup();
-
     }
 
     public void handleLoginPopup() {
-        By closeBtn = By.xpath("//span[@class='commonModal__close']");
-        By BotBtn = By.xpath("//div[class='tp-dt-header-icon']");
         try {
             // Wait up to 5 seconds for popup close button
             WebElement popupClose = wait.until(ExpectedConditions.visibilityOfElementLocated(closeBtn));
@@ -57,20 +59,9 @@ public class BaseTest {
             // Popup not present within timeout
             System.out.println("No login popup displayed.");
         }
-
-        try {
-            // Close AI bot popup if present
-            By aiBotCloseBtn = By.xpath("//img[@alt='minimize']");
-            // adjust locator
-            WebElement aiBotPopup = wait.until(ExpectedConditions.visibilityOfElementLocated(aiBotCloseBtn));
-            aiBotPopup.click();
-            System.out.println("AI bot popup closed.");
-        } catch (Exception e) {
-            System.out.println("No AI bot popup displayed.");
-        }
     }
 
-    @AfterMethod
+    @AfterSuite
     public void tearDown() {
         if (driver != null) {
             driver.quit();
