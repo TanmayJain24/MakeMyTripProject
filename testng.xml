@@ -6,4 +6,16 @@
             <class name="testcases.TC001_CabBookingLowestCharges"/>
         </classes>
     </test>
+
+    <test name="CabBookingT">
+        <classes>
+            <class name="testcases.TC004_CabCarTypePrint"/>
+        </classes>
+    </test>
+
+    <test name="Sandesh">
+        <classes>
+            <class name="testcases.TC008_GiftCard_GroupGifting_MultiRecipients"/>
+        </classes>
+    </test>
 </suite>

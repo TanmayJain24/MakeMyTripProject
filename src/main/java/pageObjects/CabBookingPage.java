@@ -25,6 +25,9 @@ public class CabBookingPage {
     private By pickupApplyBtn = By.xpath("//div[@class='applyBtn']");
     private By searchButton = By.xpath("//a[text()='Search']");
     private By cabPrices = By.xpath("//span[@class='cabDetailsCard_price__SHN6W']");
+    private By fst = By.xpath("//span[normalize-space()='HATCHBACK']");
+    private By scnd = By.xpath("//span[normalize-space()='SEDAN']")  ;
+    private By td = By.xpath("//span[normalize-space()='SUV']");
 
     public CabBookingPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -122,7 +125,8 @@ public class CabBookingPage {
         System.out.println("Search button clicked.");
     }
 
-    public void printLowestCabPrice() {
+    public void printLowestCabPrice()
+    {
         // Wait until price elements are visible
         List<WebElement> priceElements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(cabPrices));
 
@@ -145,5 +149,22 @@ public class CabBookingPage {
         } else {
             System.out.println("No cab prices found.");
         }
+
+    }
+    public List<String> getAvailableCarTypes() throws InterruptedException {
+        WebElement f = wait.until(ExpectedConditions.visibilityOfElementLocated(fst));
+        Thread.sleep(2000);
+        WebElement s = wait.until(ExpectedConditions.visibilityOfElementLocated(scnd));
+        Thread.sleep(2000);
+
+        WebElement t = wait.until(ExpectedConditions.visibilityOfElementLocated(td));
+        Thread.sleep(2000);
+
+        List<String> Lst = new ArrayList<>();
+        Lst.add(f.getText());
+        Lst.add(s.getText());
+        Lst.add(t.getText());
+
+        return  Lst;
     }
 }
