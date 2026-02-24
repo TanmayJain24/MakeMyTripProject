@@ -49,15 +49,15 @@ public class BaseTest {
     public void handleLoginPopup() {
         By closeBtn = By.xpath("//span[@class='commonModal__close']");
         By BotBtn = By.xpath("//div[class='tp-dt-header-icon']");
-        try {
-            // Wait up to 5 seconds for popup close button
-            WebElement popupClose = wait.until(ExpectedConditions.visibilityOfElementLocated(closeBtn));
-            popupClose.click();
-            System.out.println("Login popup closed.");
-        } catch (Exception e) {
-            // Popup not present within timeout
-            System.out.println("No login popup displayed.");
-        }
+//        try {
+//            // Wait up to 5 seconds for popup close button
+//            WebElement popupClose = wait.until(ExpectedConditions.visibilityOfElementLocated(closeBtn));
+//            popupClose.click();
+//            System.out.println("Login popup closed.");
+//        } catch (Exception e) {
+//            // Popup not present within timeout
+//            System.out.println("No login popup displayed.");
+//        }
 
         try {
             // Close AI bot popup if present
@@ -71,10 +71,10 @@ public class BaseTest {
         }
     }
 
-    @AfterMethod
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+//    @AfterMethod
+//    public void tearDown() {
+//        if (driver != null) {
+//            driver.quit();
+//        }
+//    }
 }
