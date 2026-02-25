@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.CabBookingPage;
 
-public class TC008_ValidateDate extends BaseTest {
+public class TC009_ValidateDate extends BaseTest {
     @Test
     public void validateDateTest() {
         CabBookingPage cabPage = new CabBookingPage(driver, wait);

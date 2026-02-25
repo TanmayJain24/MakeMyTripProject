@@ -32,7 +32,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.GiftCardPage;
 
-public class TC008_GiftCard_GroupGifting_MultiRecipients extends BaseTest {
+public class TC015_GiftCard_GroupGifting_MultiRecipients extends BaseTest {
 
     @Test
     public void group_gifting_multiple_valid() {

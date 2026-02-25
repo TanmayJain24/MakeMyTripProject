@@ -32,9 +32,9 @@ public class CabBookingPage {
     private By cabCards = By.xpath("//div[@class='cabDetailsCard_cabDetails__X3Adv']");
     private By selectBtnLocator = By.xpath("//span[normalize-space(text())='SELECT CAB']");
     private By cabDate = By.xpath("//span[@class='sc-fWnslK sc-kpOvIu dsTpEE journeyduration_journeyDurationText__Q4fcc']");
-    private By fst = By.xpath("//span[normalize-space()='HATCHBACK']");
-    private By scnd = By.xpath("//span[normalize-space()='SEDAN']")  ;
-    private By td = By.xpath("//span[normalize-space()='SUV']");
+    private By firstCabType = By.xpath("//span[normalize-space()='Hatchback']");
+    private By secondCabType = By.xpath("//span[normalize-space()='Sedan']")  ;
+    private By thirdCabType = By.xpath("//span[normalize-space()='SUV']");
 
     //Constructor
     public CabBookingPage(WebDriver driver, WebDriverWait wait) {
@@ -163,21 +163,15 @@ public class CabBookingPage {
         return lowestPrice;
 
     }
-    public List<String> getAvailableCarTypes() throws InterruptedException {
-        WebElement f = wait.until(ExpectedConditions.visibilityOfElementLocated(fst));
-        Thread.sleep(2000);
-        WebElement s = wait.until(ExpectedConditions.visibilityOfElementLocated(scnd));
-        Thread.sleep(2000);
-
-        WebElement t = wait.until(ExpectedConditions.visibilityOfElementLocated(td));
-        Thread.sleep(2000);
-
-        List<String> Lst = new ArrayList<>();
-        Lst.add(f.getText());
-        Lst.add(s.getText());
-        Lst.add(t.getText());
-
-        return  Lst;
+    public List<String> getAvailableCarTypes() {
+        WebElement first = wait.until(ExpectedConditions.visibilityOfElementLocated(firstCabType));
+        WebElement second = wait.until(ExpectedConditions.visibilityOfElementLocated(secondCabType));
+        WebElement third = wait.until(ExpectedConditions.visibilityOfElementLocated(thirdCabType));
+        List<String> List = new ArrayList<>();
+        List.add(first.getText());
+        List.add(second.getText());
+        List.add(third.getText());
+        return  List;
     }
 
     // Select Lowest Price Cab
