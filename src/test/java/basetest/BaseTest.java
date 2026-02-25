@@ -1,6 +1,7 @@
 package basetest;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import utilities.ConfigReader;
 import java.time.Duration;
+import utilities.Log;
 
 public class BaseTest {
     protected static WebDriver driver;
@@ -54,10 +56,10 @@ public class BaseTest {
             // Wait up to 5 seconds for popup close button
             WebElement popupClose = wait.until(ExpectedConditions.visibilityOfElementLocated(closeBtn));
             popupClose.click();
-            System.out.println("Login popup closed.");
+            Log.info("Login popup closed.");
         } catch (Exception e) {
             // Popup not present within timeout
-            System.out.println("No login popup displayed.");
+            Log.info("No login popup displayed.");
         }
     }
 

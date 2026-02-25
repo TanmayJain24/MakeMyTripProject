@@ -1,96 +1,235 @@
-//package pageObjects;
-//
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.WebDriver;
-//
-//public class GiftCardPage {
-//    private WebDriver driver;
-//
-//    // Locators
-//    private By giftCardSection = By.id("giftCardSection");
-//    private By nameField = By.id("name");
-//    private By emailField = By.id("email");
-//    private By amountDropdown = By.id("amount");
-//    private By submitButton = By.id("submitGiftCard");
-//
-//    public GiftCardPage(WebDriver driver) {
-//        this.driver = driver;
-//    }
-//
-//    public void openGiftCardSection() {
-//        driver.findElement(giftCardSection).click();
-//    }
-//
-//    public void fillGiftCardDetails(String name, String email, String amount) {
-//        driver.findElement(nameField).sendKeys(name);
-//        driver.findElement(emailField).sendKeys(email);
-//        driver.findElement(amountDropdown).sendKeys(amount);
-//        driver.findElement(submitButton).click();
-//    }
-//}
-
-
-
 package pageObjects;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GiftCardPage {
-    private final WebDriver driver;
-    private final WebDriverWait wait;
+    private WebDriver driver;
+    private WebDriverWait wait;
 
-    // Top-level navigation & Group Gifting tab
-    private final By giftNav = By.xpath("//a[contains(@href,'gift') or contains(.,'Gift Card') or contains(.,'Giftcards')]");
-    private final By groupGiftingTab = By.xpath("//*[contains(.,'Group Gifting')][self::a or self::div or self::span]");
-
-    // Recipient row fields (target the LAST available set so we can add multiple)
-    private final By nameFieldLast   = By.xpath("(//input[contains(@placeholder,'Name') and not(@type='email')])[last()]");
-    private final By emailFieldLast  = By.xpath("(//input[@type='email' or contains(@placeholder,'Email')])[last()]");
-    private final By amountFieldLast = By.xpath("(//input[contains(@placeholder,'Amount') or @name='amount'])[last()]");
-
-    // Add more recipients / proceed
-    private final By addAnotherBtn = By.xpath("//button[normalize-space()[contains(.,'Add')] and (contains(.,'Another') or contains(.,'Recipient') or contains(.,'More'))]");
-    private final By proceedBtn    = By.xpath("//button[contains(.,'Proceed') or contains(.,'Continue') or contains(.,'NEXT') or contains(.,'Next')]");
-
-    // Review/Payment marker after proceed
-    private final By reviewMarker = By.xpath("//*[contains(.,'Review') or contains(.,'Summary') or contains(.,'Payment') or contains(.,'Checkout')]");
-
-    // Optional: sometimes there is a generic “Agree/Accept” checkbox
-    private final By agreeCheckbox = By.xpath("//input[@type='checkbox' and (contains(@name,'agree') or contains(@id,'agree'))]");
-
-    public GiftCardPage(WebDriver driver, WebDriverWait wait) {
+    public GiftCardPage(WebDriver driver, WebDriverWait wait){
         this.driver = driver;
         this.wait = wait;
+        PageFactory.initElements(driver, this);
+    }
+    
+    @FindBy(xpath = "//img[@alt='minimize']")
+    private WebElement closeBtn;
+    @FindBy(xpath = "//span[@class='sc-kYxDKI iHnsWm']")
+    private WebElement busBtn;
+    @FindBy(xpath = "//a[normalize-space()='About US']")
+    private WebElement scrollGiftCard;
+    @FindBy(xpath = "//a[normalize-space()='Gift Cards']")
+    private WebElement giftCardLocator;
+    @FindBy(xpath = "//li[.//h3[normalize-space()='Wedding Gift Card']]")
+    private WebElement WeddingGiftCardLocator;
+    @FindBy(xpath = "//input[@name='senderName']")
+    private WebElement nameLocator;
+    @FindBy(xpath = "//input[@name='senderMobileNo']")
+    private WebElement mobileNoLocator;
+    @FindBy(xpath = "//input[@name='senderEmailId']")
+    private WebElement userEmail;
+    @FindBy(xpath = "//button[normalize-space()='BUY NOW']")
+    private WebElement buyBtn;
+    @FindBy(xpath = "//input[@id='amount']")
+    private WebElement EnterAmountLocator;
+    @FindBy(xpath = "//li[contains(text(),'₹10,000')]")
+    private WebElement priceAmount;
+    @FindBy(xpath = "//p[@class='red-text font11 append-top5']")
+    private WebElement userEmailInvalid;
+    @FindBy(xpath = "//span[@class='make-flex font18 black-text lato-bold append-right20']")
+    private WebElement nextPage_locator;
+    @FindBy(xpath = "//h3[@class='lato-black black-text']")
+    private List<WebElement> PrintGiftcard;
+    @FindBy(xpath = "//input[@id='amount']")
+    private WebElement enterAmountInput;
+    @FindBy(xpath = "//h3[@class='lato-black black-text']")
+    private List<WebElement> printGiftcard;
+
+    public void openGiftCardSection() {
+        wait.until(ExpectedConditions.visibilityOf(busBtn)).click();
+        WebElement giftCardSection = wait.until(ExpectedConditions.elementToBeClickable(giftCardLocator));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement scrollToGiftCard = wait.until(ExpectedConditions.elementToBeClickable(scrollGiftCard));
+        js.executeScript("arguments[0].scrollIntoView(true)", scrollToGiftCard);
+        wait.until(ExpectedConditions.elementToBeClickable(giftCardSection)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(closeBtn)).click();
     }
 
-    public void openGiftCardsAndGroupGifting() {
-        wait.until(ExpectedConditions.elementToBeClickable(giftNav)).click();
-        try { wait.until(ExpectedConditions.elementToBeClickable(groupGiftingTab)).click(); } catch (Exception ignored) {}
-    }
-
-    public void addRecipient(String name, String email, String amount) {
-        WebElement nf = wait.until(ExpectedConditions.visibilityOfElementLocated(nameFieldLast));
-        WebElement ef = wait.until(ExpectedConditions.visibilityOfElementLocated(emailFieldLast));
-        WebElement af = wait.until(ExpectedConditions.visibilityOfElementLocated(amountFieldLast));
-        nf.clear(); nf.sendKeys(name);
-        ef.clear(); ef.sendKeys(email);
-        af.clear(); af.sendKeys(amount);
-    }
-
-    public void addAnotherRecipientRow() {
-        try { wait.until(ExpectedConditions.elementToBeClickable(addAnotherBtn)).click(); } catch (Exception ignored) {}
-    }
-
-    public boolean proceedToReviewOrPayment() {
+    public void clickGiftCard() {
+        WebElement WeddingGiftCard = wait.until(ExpectedConditions.visibilityOf(WeddingGiftCardLocator));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", WeddingGiftCard);
         try {
-            List<WebElement> agree = driver.findElements(agreeCheckbox);
-            if (!agree.isEmpty() && !agree.get(0).isSelected()) agree.get(0).click();
-        } catch (Exception ignored) {}
+            WeddingGiftCard.click();
+        } catch (Exception e) {
+            System.out.println("Standard click failed, attempting JS click...");
+            js.executeScript("arguments[0].click();", WeddingGiftCard);
+        }
+    }
 
-        try { wait.until(ExpectedConditions.elementToBeClickable(proceedBtn)).click(); } catch (Exception ignored) {}
-        try { return driver.findElements(reviewMarker).size() > 0; } catch (Exception e) { return false; }
+    public void SelectAmount(){
+      WebElement priceBtn = wait.until(ExpectedConditions.elementToBeClickable(priceAmount));
+      priceBtn.click();
+    }
+
+    public String getEnteredAmount() {
+        // Ensure the input is visible and grab the initial value
+        WebElement input = wait.until(ExpectedConditions.visibilityOf(enterAmountInput));
+        String before = input.getAttribute("value");
+
+        // Wait until the value becomes non-null and different from 'before'
+        new WebDriverWait(driver, Duration.ofSeconds(8)).until(drv -> {
+            String now = enterAmountInput.getAttribute("value");
+            return now != null && !now.equals(before);
+        });
+
+        // Return only digits
+        return enterAmountInput.getAttribute("value").replaceAll("[^0-9]", "");
+    }
+
+    public void userDetails() {
+        WebElement name = wait.until(ExpectedConditions.visibilityOf(nameLocator));
+        WebElement mobileNo = wait.until(ExpectedConditions.visibilityOf(mobileNoLocator));
+        WebElement email = wait.until(ExpectedConditions.visibilityOf(userEmail));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        // Scroll name into view (center; avoid 'smooth' for stability)
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});", name);
+        wait.until(ExpectedConditions.elementToBeClickable(name));
+
+        // Clear + type (Ctrl+A + Delete is more reliable than clear())
+        name.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        name.sendKeys(Keys.DELETE);
+        name.sendKeys("Tanishk Yadav");
+
+        // Mobile
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});", mobileNo);
+        wait.until(ExpectedConditions.elementToBeClickable(mobileNo));
+        mobileNo.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        mobileNo.sendKeys(Keys.DELETE);
+        mobileNo.sendKeys("7413938042");
+
+        // Email
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});", email);
+        wait.until(ExpectedConditions.elementToBeClickable(email));
+        email.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        email.sendKeys(Keys.DELETE);
+        email.sendKeys("tanishkyadav933@gmail.com");
+
+        // Trigger inline validations (blur active element)
+        js.executeScript("if (document.activeElement) document.activeElement.blur();");
+
+        // Click BUY with interception fallback
+        WebElement buy = wait.until(ExpectedConditions.elementToBeClickable(buyBtn));
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});", buy);
+        try {
+            buy.click();
+            wait.until(ExpectedConditions.visibilityOf(nextPage_locator));
+        } catch (ElementClickInterceptedException e) {
+            js.executeScript("arguments[0].click();", buy);
+        }
+    }
+
+    public String userDetailsInvalid(String name, String mobile, String email) {
+        // Wait for fields (ensures page state is ready)
+        driver.navigate().back();
+        WebElement nameField = wait.until(ExpectedConditions.visibilityOf(nameLocator));
+        WebElement mobileField = wait.until(ExpectedConditions.visibilityOf(mobileNoLocator));
+        WebElement emailField = wait.until(ExpectedConditions.visibilityOf(userEmail));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});", nameField);
+        wait.until(ExpectedConditions.elementToBeClickable(nameField));
+        nameField.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        nameField.sendKeys(Keys.DELETE);
+        if (name != null) nameField.sendKeys(name);
+
+        // Fill mobile
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});", mobileField);
+        wait.until(ExpectedConditions.elementToBeClickable(mobileField));
+        mobileField.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        mobileField.sendKeys(Keys.DELETE);
+        if (mobile != null) mobileField.sendKeys(mobile);
+
+        // Fill email
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});", emailField);
+        wait.until(ExpectedConditions.elementToBeClickable(emailField));
+        emailField.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        emailField.sendKeys(Keys.DELETE);
+        if (email != null) emailField.sendKeys(email);
+
+        // Trigger validations (blur + submit)
+        js.executeScript("if (document.activeElement) document.activeElement.blur();");
+
+        WebElement buy = wait.until(ExpectedConditions.elementToBeClickable(buyBtn));
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});", buy);
+        try {
+            buy.click();
+        } catch (ElementClickInterceptedException e) {
+            js.executeScript("arguments[0].click();", buy);
+        }
+
+        // Collect error message(s) AFTER triggering validation
+        String emailErrorText = "";
+        try {
+            WebElement errMsg = wait.until(ExpectedConditions.visibilityOf(userEmailInvalid));
+            emailErrorText = errMsg.getText();
+            System.out.println("Email error: " + emailErrorText);
+        } catch (TimeoutException te) {
+            // No visible email error
+        }
+
+        // Derivations you were computing
+        String digitsOnly = (mobile == null) ? "" : mobile.replaceAll("\\D", "");
+        boolean nameHasSpace = (name != null) && name.trim().contains(" ");
+        boolean emailLooksValid = (email != null) && email.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$");
+
+        // Return a compact summary useful for assertions
+        return String.format(
+                "digitsOnlyMobile=%s; nameHasSpace=%s; emailLooksValid=%s; emailError='%s'",
+                digitsOnly, nameHasSpace, emailLooksValid, emailErrorText
+        );
+    }
+
+    public List<String> getGiftCardTitles() {
+        // Wait until the list of titles is visible (uses the @FindBy proxied list)
+        wait.until(ExpectedConditions.visibilityOfAllElements(printGiftcard));
+
+        // Snapshot the current list (optional; helps avoid concurrent changes)
+        List<WebElement> cards = new ArrayList<>(printGiftcard);
+        List<String> titles = new ArrayList<>();
+
+        for (int i = 0; i < cards.size(); i++) {
+            try {
+                titles.add(cards.get(i).getText().trim());
+            } catch (StaleElementReferenceException e) {
+                // If stale, wait for staleness and re-acquire this index from the proxied list
+                WebElement stale = cards.get(i);
+                try {
+                    wait.until(ExpectedConditions.stalenessOf(stale));
+                } catch (Exception ignored) {
+                    // If staleness wait fails quickly, continue to re-fetch anyway
+                }
+                // Re-fetch the element by index from the proxied list and read again
+                WebElement refetched = printGiftcard.get(i);
+                titles.add(refetched.getText().trim());
+            }
+        }
+
+        // Print
+        System.out.println("Total gift cards found: " + titles.size());
+        for (int i = 0; i < titles.size(); i++) {
+            System.out.println((i + 1) + ". " + titles.get(i));
+        }
+
+        return titles;
     }
 }
