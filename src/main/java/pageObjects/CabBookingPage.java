@@ -29,7 +29,6 @@ public class CabBookingPage {
         PageFactory.initElements(driver, this);
     }
 
-    // Replace your locators with @FindBy
     @FindBy(xpath = "//span[text()='Cabs']")
     private WebElement cabsBtn;
     @FindBy(xpath = "//span[normalize-space()='Outstation One-way']")
