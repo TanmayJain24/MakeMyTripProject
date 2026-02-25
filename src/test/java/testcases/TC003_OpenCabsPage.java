@@ -11,7 +11,7 @@ public class TC003_OpenCabsPage extends BaseTest {
         CabBookingPage cabPage = new CabBookingPage(driver, wait);
         cabPage.openCabsPage();
         String actualTitle = driver.getTitle();
-        String expectedTitle = "Cab Booking";
+        String expectedTitle = "Cab Booking - Outstation cabs";
         Assert.assertTrue(actualTitle.contains(expectedTitle), "Cab booking page URL mismatch!");
     }
 }

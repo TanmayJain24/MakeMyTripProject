@@ -1,7 +1,23 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="MakeMyTripAutomationSuite" parallel="false">
+    <listeners>
+        <listener class-name="reports.ExtentReportManager"/>
+    </listeners>
     <test name="CabBookingTests">
         <classes>
+            <class name="testcases.TC001_VerifyUrl"/>
+            <class name="testcases.TC002_VerifyTitle"/>
+            <class name="testcases.TC003_OpenCabsPage"/>
+            <class name="testcases.TC004_SelectTripType"/>
+            <class name="testcases.TC005_SearchCabs"/>
+            <class name="testcases.TC006_PrintLowestPrice"/>
+            <class name="testcases.TC007_SelectLowestCab"/>
+            <class name="testcases.TC008_ValidateDate"/>
+            <class name="testcases.TC009_InsurancePlan"/>
+            <class name="testcases.TC010_BusCount"/>
+            <class name="testcases.TC011_ApplyFilter"/>
+            <class name="testcases.TC012_FastestBusDetails"/>
+            <class name="testcases.TC013_HighestRating"/>
 
             <class name="testcases.TC014_OpenGiftCard"/>
             <class name="testcases.TC015_PrintGiftCards"/>
