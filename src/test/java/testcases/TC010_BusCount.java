@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.BusBookingPage;
 
-public class P2_BusCount extends BaseTest {
+public class TC010_BusCount extends BaseTest {
 
     @Test
     public void testBusSearchForTomorrow() throws InterruptedException {

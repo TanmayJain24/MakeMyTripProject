@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.BusBookingPage;
 
-public class P4_FastestBusDetails extends BaseTest {
+public class TC012_FastestBusDetails extends BaseTest {
 
     @Test
     public void testIdentifyFastestBus() throws InterruptedException {

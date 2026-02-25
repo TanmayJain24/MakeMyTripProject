@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.BusBookingPage;
 
-public class P3_ApplyFilter extends BaseTest {
+public class TC011_ApplyFilter extends BaseTest {
 
     @Test
     public void testACAndSleeperBusFilter() throws InterruptedException {
