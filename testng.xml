@@ -21,7 +21,7 @@
             <class name="testcases.TC014_OpenGiftCard"/>
             <class name="testcases.TC015_PrintGiftCards"/>
             <class name="testcases.TC016_selectPriceShowsInEnterAmount"/>
-            <class name="testcases.TC017_userDetails"/>
+            <class name="testcases.TC017_ValidUserDetails"/>
             <class name="testcases.TC018_InvalidUserDetails"/>
         </classes>
     </test>
