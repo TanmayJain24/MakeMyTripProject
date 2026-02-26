@@ -49,13 +49,9 @@ public class BusBookingPage {
         this.wait = wait;
         PageFactory.initElements(driver, this);
     }
-
     public void navigateToBuses() {
         wait.until(ExpectedConditions.elementToBeClickable(busTab)).click();
-        wait.until(ExpectedConditions.visibilityOf(sourceInput));
-
     }
-
     public void enterFromCity(String from) {
         WebElement src = wait.until(ExpectedConditions.visibilityOf(sourceInput));
         src.clear();
@@ -68,13 +64,11 @@ public class BusBookingPage {
             src.sendKeys(Keys.ENTER);
         }
     }
-
     public void enterToCity(String to) {
         WebElement dest = wait.until(ExpectedConditions.visibilityOf(destinationInput));
         dest.clear();
         dest.sendKeys(to);
-
-        By suggestion = By.xpath("//li//span[contains(translate(text(), 'DELHI', 'delhi'), 'delhi')]");
+        By suggestion = By.xpath("//li//span[contains(translate(text(), 'INDORE', 'indore'), 'indore')]");
         try {
             WebElement firstOption = wait.until(ExpectedConditions.elementToBeClickable(suggestion));
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", firstOption);
@@ -82,7 +76,6 @@ public class BusBookingPage {
             dest.sendKeys(Keys.ENTER);
         }
     }
-
     public void selectTomorrow() {
         try {
             WebElement tomorrow = wait.until(ExpectedConditions.elementToBeClickable(tomorrowBtn));
@@ -92,10 +85,8 @@ public class BusBookingPage {
             System.out.println("Tomorrow button not found or already selected.");
         }
     }
-
     public void clickSearch() {
         try {
-
             driver.findElement(By.tagName("body")).sendKeys(Keys.ESCAPE);
             WebElement btn = wait.until(ExpectedConditions.visibilityOf(searchBtn));
             JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -105,7 +96,6 @@ public class BusBookingPage {
             System.out.println("Search button click failed: " + e.getMessage());
         }
     }
-
     public int getBusCount() {
         try {
             wait.until(ExpectedConditions.visibilityOfAllElements(busCards));
@@ -115,26 +105,15 @@ public class BusBookingPage {
             return 0;
         }
     }
-
-
     public void applyFilters() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-
         WebElement ac = wait.until(ExpectedConditions.elementToBeClickable(acFilter));
         js.executeScript("arguments[0].click();", ac);
         System.out.println("AC Filter applied.");
-
         WebElement sleeper = wait.until(ExpectedConditions.elementToBeClickable(sleeperFilter));
         js.executeScript("arguments[0].click();", sleeper);
         System.out.println("Sleeper Filter applied.");
-
     }
-
-    private void waitForPageToLoad() {
-        wait.until(ExpectedConditions.invisibilityOf(loader));
-        wait.until(ExpectedConditions.visibilityOfAllElements(busCards));
-    }
-
     public void sortByFastest() {
         try {
             WebElement sortBtn = wait.until(ExpectedConditions.elementToBeClickable(durationSortBtn));
@@ -144,7 +123,6 @@ public class BusBookingPage {
             System.out.println("Could not click Sort by Duration: " + e.getMessage());
         }
     }
-
     public String getFirstBusDetails() {
         try {
             String name = wait.until(ExpectedConditions.visibilityOf(firstBusName)).getText();
@@ -153,18 +131,15 @@ public class BusBookingPage {
             return "Could not extract bus details.";
         }
     }
-
     public void applyTopRatedFilter() {
         WebElement element = wait.until(ExpectedConditions.visibilityOf(topRatedFilter));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
     }
-
     public void sortByRatingDescending() {
         WebElement element = wait.until(ExpectedConditions.visibilityOf(ratingSortHeader));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", element);
     }
-
     public String getTopRatedBusDetails() {
         try {
             wait.until(ExpectedConditions.visibilityOf(firstBusNameP5));
@@ -172,7 +147,6 @@ public class BusBookingPage {
             String rating = wait.until(ExpectedConditions.visibilityOf(firstBusRating)).getText();
             String cleanName = name.replaceAll("\\s+", " ").trim();
             String cleanRating = rating.replaceAll("\\s+", " ").trim();
-
             return "Bus Name: " + cleanName + " | Rating: " + cleanRating;
         } catch (Exception e) {
             return "Could not retrieve bus details: " + e.getMessage();

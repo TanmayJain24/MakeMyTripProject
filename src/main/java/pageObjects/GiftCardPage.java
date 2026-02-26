@@ -19,7 +19,7 @@ public class GiftCardPage {
         this.wait = wait;
         PageFactory.initElements(driver, this);
     }
-    
+
     @FindBy(xpath = "//img[@alt='minimize']")
     private WebElement closeBtn;
     @FindBy(xpath = "//span[@class='sc-kYxDKI iHnsWm']")
@@ -76,8 +76,8 @@ public class GiftCardPage {
     }
 
     public void SelectAmount(){
-      WebElement priceBtn = wait.until(ExpectedConditions.elementToBeClickable(priceAmount));
-      priceBtn.click();
+        WebElement priceBtn = wait.until(ExpectedConditions.elementToBeClickable(priceAmount));
+        priceBtn.click();
     }
 
     public String getEnteredAmount() {
@@ -95,7 +95,7 @@ public class GiftCardPage {
         return enterAmountInput.getAttribute("value").replaceAll("[^0-9]", "");
     }
 
-    public void userDetails() {
+    public void userDetails(String username, String mobile, String emailId) {
         WebElement name = wait.until(ExpectedConditions.visibilityOf(nameLocator));
         WebElement mobileNo = wait.until(ExpectedConditions.visibilityOf(mobileNoLocator));
         WebElement email = wait.until(ExpectedConditions.visibilityOf(userEmail));
@@ -108,21 +108,21 @@ public class GiftCardPage {
         // Clear + type (Ctrl+A + Delete is more reliable than clear())
         name.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         name.sendKeys(Keys.DELETE);
-        name.sendKeys("Tanishk Yadav");
+        name.sendKeys(username);
 
         // Mobile
         js.executeScript("arguments[0].scrollIntoView({block:'center'});", mobileNo);
         wait.until(ExpectedConditions.elementToBeClickable(mobileNo));
         mobileNo.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         mobileNo.sendKeys(Keys.DELETE);
-        mobileNo.sendKeys("7413938042");
+        mobileNo.sendKeys(mobile);
 
         // Email
         js.executeScript("arguments[0].scrollIntoView({block:'center'});", email);
         wait.until(ExpectedConditions.elementToBeClickable(email));
         email.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         email.sendKeys(Keys.DELETE);
-        email.sendKeys("tanishkyadav933@gmail.com");
+        email.sendKeys(emailId);
 
         // Trigger inline validations (blur active element)
         js.executeScript("if (document.activeElement) document.activeElement.blur();");
@@ -139,7 +139,6 @@ public class GiftCardPage {
     }
 
     public String userDetailsInvalid(String name, String mobile, String email) {
-        // Wait for fields (ensures page state is ready)
         driver.navigate().back();
         WebElement nameField = wait.until(ExpectedConditions.visibilityOf(nameLocator));
         WebElement mobileField = wait.until(ExpectedConditions.visibilityOf(mobileNoLocator));
@@ -165,10 +164,8 @@ public class GiftCardPage {
         emailField.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         emailField.sendKeys(Keys.DELETE);
         if (email != null) emailField.sendKeys(email);
-
         // Trigger validations (blur + submit)
         js.executeScript("if (document.activeElement) document.activeElement.blur();");
-
         WebElement buy = wait.until(ExpectedConditions.elementToBeClickable(buyBtn));
         js.executeScript("arguments[0].scrollIntoView({block:'center'});", buy);
         try {
@@ -176,23 +173,15 @@ public class GiftCardPage {
         } catch (ElementClickInterceptedException e) {
             js.executeScript("arguments[0].click();", buy);
         }
-
-        // Collect error message(s) AFTER triggering validation
+        // Collect error message AFTER triggering validation
         String emailErrorText = "";
-        try {
-            WebElement errMsg = wait.until(ExpectedConditions.visibilityOf(userEmailInvalid));
-            emailErrorText = errMsg.getText();
-            System.out.println("Email error: " + emailErrorText);
-        } catch (TimeoutException te) {
-            // No visible email error
-        }
-
-        // Derivations you were computing
+        WebElement errMsg = wait.until(ExpectedConditions.visibilityOf(userEmailInvalid));
+        emailErrorText = errMsg.getText();
+        System.out.println("Email error: " + emailErrorText);
         String digitsOnly = (mobile == null) ? "" : mobile.replaceAll("\\D", "");
         boolean nameHasSpace = (name != null) && name.trim().contains(" ");
         boolean emailLooksValid = (email != null) && email.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$");
-
-        // Return a compact summary useful for assertions
+        // Compact summary useful for assertions
         return String.format(
                 "digitsOnlyMobile=%s; nameHasSpace=%s; emailLooksValid=%s; emailError='%s'",
                 digitsOnly, nameHasSpace, emailLooksValid, emailErrorText
@@ -200,36 +189,23 @@ public class GiftCardPage {
     }
 
     public List<String> getGiftCardTitles() {
-        // Wait until the list of titles is visible (uses the @FindBy proxied list)
         wait.until(ExpectedConditions.visibilityOfAllElements(printGiftcard));
-
-        // Snapshot the current list (optional; helps avoid concurrent changes)
         List<WebElement> cards = new ArrayList<>(printGiftcard);
         List<String> titles = new ArrayList<>();
-
         for (int i = 0; i < cards.size(); i++) {
             try {
                 titles.add(cards.get(i).getText().trim());
             } catch (StaleElementReferenceException e) {
-                // If stale, wait for staleness and re-acquire this index from the proxied list
                 WebElement stale = cards.get(i);
-                try {
-                    wait.until(ExpectedConditions.stalenessOf(stale));
-                } catch (Exception ignored) {
-                    // If staleness wait fails quickly, continue to re-fetch anyway
-                }
-                // Re-fetch the element by index from the proxied list and read again
+                wait.until(ExpectedConditions.stalenessOf(stale));
                 WebElement refetched = printGiftcard.get(i);
                 titles.add(refetched.getText().trim());
             }
         }
-
-        // Print
         System.out.println("Total gift cards found: " + titles.size());
         for (int i = 0; i < titles.size(); i++) {
             System.out.println((i + 1) + ". " + titles.get(i));
         }
-
         return titles;
     }
 }

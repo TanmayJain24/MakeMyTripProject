@@ -1,8 +1,8 @@
 package testcases;
-
 import basetest.BaseTest;
 import org.testng.annotations.Test;
 import pageObjects.InsurancePage;
+import utilities.ScreenshotUtility;
 
 public class TC009_InsurancePlan extends BaseTest {
 
@@ -14,7 +14,7 @@ public class TC009_InsurancePlan extends BaseTest {
         insurancePage.addOneTraveller();
         insurancePage.clickViewPlans();
         insurancePage.scrollToBottom();
-
+        ScreenshotUtility.takeScreenShot(driver, "InsurancePlan");
         System.out.println("Insurance Test Case 1 completed successfully.");
     }
 }

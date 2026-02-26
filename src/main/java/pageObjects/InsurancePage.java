@@ -51,7 +51,6 @@ public class InsurancePage {
 
     public void scrollToBottom() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        // Scrolls to the absolute bottom of the page
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         System.out.println("Scrolled to the end of the page.");
     }
