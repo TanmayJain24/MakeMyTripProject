@@ -57,6 +57,12 @@ public class CabBookingPage {
     @FindBy(xpath = "//span[normalize-space(text())='SELECT CAB']")
     private List<WebElement> selectBtns;
     @FindBy(xpath = "//span[@class='sc-fWnslK sc-kpOvIu dsTpEE journeyduration_journeyDurationText__Q4fcc']")
+
+    private By first = By.xpath("//span[normalize-space()='Hatchback']");
+    private By second = By.xpath("//span[normalize-space()='Sedan']")  ;
+    private By third = By.xpath("//span[normalize-space()='SUV']");
+
+
     private WebElement cabDate;
 
     // Navigate to Cabs page
@@ -200,6 +206,23 @@ public class CabBookingPage {
             }
         }
         Log.info("Lowest cab card not found.");
+    }
+
+//Sandesh
+    public List<String> getAvailableCarTypes() throws InterruptedException {
+        WebElement firstEle = wait.until(ExpectedConditions.visibilityOfElementLocated(first));
+
+        WebElement secEle = wait.until(ExpectedConditions.visibilityOfElementLocated(second));
+
+        WebElement thirdEle = wait.until(ExpectedConditions.visibilityOfElementLocated(third));
+
+        List<String> eleList = new ArrayList<>();
+        eleList.add(firstEle.getText());
+        eleList.add(secEle.getText());
+        eleList.add(thirdEle.getText());
+
+        return eleList;
+
     }
 
     // Validate the date displayed on UI is same as expected

@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.FlightBookingPage;
 
-public class TC011_Flight_Search_Results extends BaseTest {
+public class TC051_Cheapest_Flight_Search_Results extends BaseTest {
     @Test
     public void search_flights_results() {
         FlightBookingPage fp = new FlightBookingPage(driver, wait);
@@ -46,34 +46,3 @@ public class TC011_Flight_Search_Results extends BaseTest {
     }
 }
 
-
-
-
-//package testcases;
-//
-//import basetest.BaseTest;
-//import org.testng.Assert;
-//import org.testng.annotations.Test;
-//import pageObjects.FlightBookingPage;
-//
-//public class TC011_Flight_Search_Results extends BaseTest {
-//    @Test
-//    public void search_flights_results(){
-//        FlightBookingPage fp = new FlightBookingPage(driver, wait);
-////        fp.ensureFlightsLanding();
-//        fp.selectFromCity("Chennai");
-//        boolean citySelected = fp.selectToCity("Mumbai");
-//        Assert.assertTrue(citySelected, "City not selected correctly!");
-//
-//
-//        fp.selectDate(driver, "12", "October 2026");
-//        fp.travellerSelectAdult(driver, "3");
-//        fp.travellerSelectChild(driver, "1");
-//        fp.travellerSelectInfant(driver, "0");
-//        fp.selectClass(driver,"First Class");
-//        fp.searchResults(driver);
-//        fp.printResults(driver,"First Class");
-//
-//
-//    }
-//}

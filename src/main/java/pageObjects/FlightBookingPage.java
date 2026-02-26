@@ -6,10 +6,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 public class FlightBookingPage {
     private final WebDriver driver;
     private final WebDriverWait wait;
+    private final JavascriptExecutor js;
+    private int centerX;
+    private int centerY;
 
     private final String flightsUrl = "https://www.goibibo.com/flights/";
 
@@ -38,16 +43,26 @@ public class FlightBookingPage {
     // Results
     private final By searchResultLoc = By.xpath("//div[@data-test='component-clusterItem']");
 
+    // Filter
+    private final By airlineLoc = By.xpath("(//p[@class='checkboxTitle'][normalize-space()='Air India'])[1]");
+    private final By gotItBtn = By.xpath("//span[@class='button buttonPrimary pushRight widthFitContent']");
+    private final By Stud = By.xpath("//li[contains(@class,'active')]//span[@class='radioSelect']");
+    private final By after6pm = By.xpath("//div[p[contains(text(),'Departure')]]//div[contains(@class,'filterTimeSlots')][div[normalize-space()='After 6 pm']]");
+    private final By before6am = By.xpath("//div[p[contains(text(),'Arrival')]]//div[contains(@class,'filterTimeSlots')][div[normalize-space()='Before 6 am']]");
+    private final By nonStopBtn = By.xpath("//p[normalize-space()='Non Stop First']");
+
     public FlightBookingPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
+        this.js = (JavascriptExecutor) driver;
+
+        // Initializing global center coordinates for selectFromCity
+        this.centerX = driver.manage().window().getSize().getWidth() / 2;
+        this.centerY = driver.manage().window().getSize().getHeight() / 2;
     }
 
     public boolean selectFromCity(String from) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        int x = driver.manage().window().getSize().getWidth() / 2;
-        int y = driver.manage().window().getSize().getHeight() / 2;
-        js.executeScript("document.elementFromPoint(arguments[0], arguments[1]).click();", x, y);
+        js.executeScript("document.elementFromPoint(arguments[0], arguments[1]).click();", centerX, centerY);
         wait.until(ExpectedConditions.elementToBeClickable(fromTile)).click();
         wait.until(ExpectedConditions.elementToBeClickable(fromCityInput)).sendKeys(from);
         By fromOptionLocator = By.xpath("//li[@id='react-autowhatever-1-section-0-item-0']//div[@class='revampedSuggestionContent']");
@@ -62,7 +77,6 @@ public class FlightBookingPage {
         wait.until(ExpectedConditions.elementToBeClickable(toCityInput)).sendKeys(to);
         By fromOptionLocator = By.xpath("//li[@id='react-autowhatever-1-section-0-item-0']//div[@class='revampedSearchSuggestionMain']");
         WebElement fromOption = wait.until(ExpectedConditions.visibilityOfElementLocated(fromOptionLocator));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", fromOption);
         System.out.println("Selected To city: " + to);
         return wait.until(ExpectedConditions.textToBePresentInElementValue(toTile, to));
@@ -91,10 +105,10 @@ public class FlightBookingPage {
         return true;
     }
 
-    public String travellerSelectAdult(WebDriver driver, String adult) {
+    public String travellerSelectAdult(WebDriver driver,String adult) {
         WebElement TravellerSelect = wait.until(ExpectedConditions.elementToBeClickable(travellers));
         TravellerSelect.click();
-        List<WebElement> adultTravellers = driver.findElements((applyAdultTravellers));
+        List<WebElement> adultTravellers = driver.findElements(applyAdultTravellers);
         String clickedValue = "";
         for (WebElement getAdult : adultTravellers) {
             if (getAdult.getText().equals(adult)) {
@@ -106,8 +120,8 @@ public class FlightBookingPage {
         return clickedValue;
     }
 
-    public void travellerSelectChild(WebDriver driver, String child) {
-        List<WebElement> childTravellers = driver.findElements((applyChildTravellers));
+    public void travellerSelectChild(WebDriver driver,String child) {
+        List<WebElement> childTravellers = driver.findElements(applyChildTravellers);
         for (WebElement getChild : childTravellers) {
             if (getChild.getText().equals(child)) {
                 getChild.click();
@@ -116,8 +130,8 @@ public class FlightBookingPage {
         }
     }
 
-    public void travellerSelectInfant(WebDriver driver, String child) {
-        List<WebElement> infantTravellers = driver.findElements((applyInfantsTravellers));
+    public void travellerSelectInfant(WebDriver driver,String child) {
+        List<WebElement> infantTravellers = driver.findElements(applyInfantsTravellers);
         for (WebElement getInfant : infantTravellers) {
             if (getInfant.getText().equals(child)) {
                 getInfant.click();
@@ -144,13 +158,26 @@ public class FlightBookingPage {
     public void searchResults(WebDriver driver) {
         wait.until(ExpectedConditions.elementToBeClickable(applyBtn)).click();
         wait.until(ExpectedConditions.elementToBeClickable(searchBtn)).click();
-        By popupCancelBtn = By.xpath("//span[@class='bgProperties overlayCrossIcon icon20']");
-        List<WebElement> popupElements = driver.findElements(popupCancelBtn);
-        if (popupElements.size() > 0) {
-            System.out.println("Ad popup detected. Closing now...");
-            wait.until(ExpectedConditions.elementToBeClickable(popupCancelBtn)).click();
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(popupCancelBtn));
+
+        try {
+            WebElement gotIt = wait.until(ExpectedConditions.presenceOfElementLocated(gotItBtn));
+            js.executeScript("arguments[0].scrollIntoView(true);", gotIt);
+            js.executeScript("arguments[0].click();", gotIt);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(gotItBtn));
+            System.out.println("Auto-scroll intercepted and 'GOT IT' popup closed.");
+        } catch (Exception e) {
+            System.out.println("Popup did not appear or was handled by override.");
         }
+        js.executeScript("document.elementFromPoint(arguments[0], arguments[1]).click();", centerX, centerY);
+
+    }
+
+    public void filterByAirline(String airlineName) {
+        WebElement airlineFilter = wait.until(ExpectedConditions.presenceOfElementLocated(airlineLoc));
+        js.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", airlineFilter);
+        js.executeScript("arguments[0].click();", airlineFilter);
+        System.out.println("Applied filter for: " + airlineName);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(searchResultLoc));
     }
 
     public int getResultsCount() {
@@ -158,7 +185,7 @@ public class FlightBookingPage {
         return driver.findElements(searchResultLoc).size();
     }
 
-    public void printResults(WebDriver driver, String selectedClass) {
+    public void printResults(WebDriver driver,String selectedClass) {
         wait.until(ExpectedConditions.presenceOfElementLocated(searchResultLoc));
         System.out.println("\n===========================================================================");
         System.out.println("CLEANED FLIGHT RESULTS FOR: " + selectedClass.toUpperCase());
@@ -166,8 +193,7 @@ public class FlightBookingPage {
         System.out.println(String.format("%-15s | %-12s | %-12s | %-10s | %-10s", "AIRLINE", "FROM", "TO", "TIME", "PRICE"));
         System.out.println("---------------------------------------------------------------------------");
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        java.util.Set<String> processedFlights = new java.util.HashSet<>();
+        Set<String> processedFlights = new HashSet<>();
         int totalFlightsFound = 0;
         int lastCount = -1;
 
@@ -175,21 +201,25 @@ public class FlightBookingPage {
             lastCount = totalFlightsFound;
             List<WebElement> searchResultList = driver.findElements(searchResultLoc);
             for (WebElement row : searchResultList) {
-                List<WebElement> nameElements = row.findElements(By.className("airlineName"));
-                String airline = !nameElements.isEmpty() ? nameElements.get(0).getText() : "Unknown";
-                List<WebElement> timeElements = row.findElements(By.className("flightTimeInfo"));
-                String time = !timeElements.isEmpty() ? timeElements.get(0).getText() : "N/A";
-                String rowID = airline + "_" + time;
+                try {
+                    List<WebElement> nameElements = row.findElements(By.className("airlineName"));
+                    String airline = !nameElements.isEmpty() ? nameElements.get(0).getText() : "Unknown";
+                    List<WebElement> timeElements = row.findElements(By.className("flightTimeInfo"));
+                    String time = !timeElements.isEmpty() ? timeElements.get(0).getText() : "N/A";
+                    String rowID = airline + "_" + time;
 
-                if (!processedFlights.contains(rowID) && !airline.equals("Unknown")) {
-                    List<WebElement> priceElements = row.findElements(By.xpath(".//div[contains(@class, 'clusterViewPrice')]/span[not(contains(@class, 'slashedPrice'))]"));
-                    String price = "N/A";
-                    if (!priceElements.isEmpty()) {
-                        price = "Rs. " + priceElements.get(0).getText().replace("₹", "").trim();
+                    if (!processedFlights.contains(rowID) && !airline.equals("Unknown")) {
+                        List<WebElement> priceElements = row.findElements(By.xpath(".//div[contains(@class, 'clusterViewPrice')]/span[not(contains(@class, 'slashedPrice'))]"));
+                        String price = "N/A";
+                        if (!priceElements.isEmpty()) {
+                            price = "Rs. " + priceElements.get(0).getText().replace("₹", "").trim();
+                        }
+                        System.out.println(String.format("%-15s | %-12s | %-12s | %-10s | %-10s", airline, "Origin", "Destination", time, price));
+                        processedFlights.add(rowID);
+                        totalFlightsFound++;
                     }
-                    System.out.println(String.format("%-15s | %-12s | %-12s | %-10s | %-10s", airline, "Chennai", "Pune", time, price));
-                    processedFlights.add(rowID);
-                    totalFlightsFound++;
+                } catch (Exception e) {
+                    continue;
                 }
             }
             js.executeScript("window.scrollBy(0, 1000);");
@@ -199,310 +229,41 @@ public class FlightBookingPage {
         System.out.println("---------------------------------------------------------------------------");
         System.out.println("Total Unique Flights Found: " + totalFlightsFound);
     }
+
+    public void selectFareType(String type) {
+        By fareLoc = By.xpath("//div[normalize-space()='"+type+"']");
+        wait.until(ExpectedConditions.elementToBeClickable(fareLoc)).click();
+        System.out.println("Selected Fare Type: " + type);
+    }
+
+    public boolean applyNonStopFilter() {
+        WebElement nonStopElement = wait.until(ExpectedConditions.presenceOfElementLocated(nonStopBtn));
+        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", nonStopElement);
+        js.executeScript("arguments[0].click();", nonStopElement);
+        return nonStopElement.isEnabled();
+
+    }
+
+    public boolean filterDepartureAfter6PM() {
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(after6pm));
+        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+        js.executeScript("arguments[0].click();", element);
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(searchResultLoc));
+        System.out.println("Applied: Departure After 6 PM");
+        return element.isEnabled();
+    }
+
+    public boolean filterArrivalBefore6AM() {
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(before6am));
+        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+        js.executeScript("arguments[0].click();", element);
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(searchResultLoc));
+        System.out.println("Applied: Arrival Before 6 AM");
+        return element.isEnabled();
+    }
+
+    public boolean confirmSelection() {
+        WebElement StudRadio = wait.until(ExpectedConditions.visibilityOfElementLocated(Stud));
+        return StudRadio.isDisplayed();
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//package pageObjects;
-//
-//import org.openqa.selenium.*;
-//import org.openqa.selenium.support.ui.ExpectedConditions;
-//import org.openqa.selenium.support.ui.WebDriverWait;
-//
-//import java.time.Duration;
-//import java.util.List;
-//import java.util.Locale;
-//
-//public class FlightBookingPage {
-//    private final WebDriver driver;
-//    private final WebDriverWait wait;
-//
-//    private final String flightsUrl = "https://www.goibibo.com/flights/";
-//
-//    // From/To tiles (focus these first)
-//    private final By fromTile = By.xpath("//input[@id='fromCity']");
-//    private final By toTile = By.xpath("//input[@id='toCity']");
-//    //li[@id='react-autowhatever-1-section-0-item-0']//div[@class='revampedSuggestionContent']
-//    private By fromCityInput = By.xpath("//input[@placeholder='From']");
-//    private By toCityInput = By.xpath("//input[@placeholder='To']");
-//    private By nextMonthLocator = By.xpath("//span[@aria-label='Next Month']");
-//    private By dateCaption = By.className("DayPicker-Caption");
-//
-//
-//    // Departure calendar
-//    private final By departureTile = By.xpath("//span[normalize-space()='Departure']");
-//    private final By calendarGrid = By.xpath("//div[@class='DayPicker-Months']");
-////  private final By eleMonth = By.xpath("//body/div[@id='root']/div[@id='top-banner']/div[@class='minContainer']/div/div[@class='flightWidgetSection appendBottom40']/div[@class='flightSearchWidget']/div[contains(@class,'searchWidgetContainer')]/div[contains(@class,'fltWidgetSection appendBottom40 primaryTraveler')]/div[@class='fsw widgetOpen']/div[@class='fsw_inner returnPersuasion']/div[@class='flt_fsw_inputBox dates inactiveWidget activeWidget']/div[@class='datePickerContainer']/div[@class='flightCalOverlay']/div[@class='dayPickerFlightWrap']/div[@class='RangeExample']/div[@class='DayPicker Selectable Range']/div[@class='DayPicker-wrapper']/div[@class='DayPicker-Months']/div[2]/div[1]/div[1]");
-////    private final By monthYear = By.xpath("//div[contains(text(),'March 2026')]");
-//    private final By dates = By.xpath("//div[@class='DayPicker-Body']//div");
-//
-//    //
-//    private final By regularBtn = By.xpath("//div[normalize-space()='Regular fares']");
-//
-//
-//    // Travellers & Class
-//    private final By travellers = By.xpath("//span[@class='lbl_input appendBottom5']");
-//    private final By applyAdultTravellers = By.xpath("//ul[@class='guestCounter font12 darkText gbCounter']/descendant::li[contains(@data-cy, 'adults')]");
-//    private final By applyChildTravellers = By.xpath("//div[@class='makeFlex column childCounter']/ul//li");
-//    private final By applyInfantsTravellers = By.xpath("//div[@class='makeFlex column pushRight infantCounter']/ul//li");
-//
-//    private final By classesAvailable = By.xpath("//ul[@class='guestCounter classSelect font12 darkText']/Li");
-//    private final By applyBtn = By.xpath("//button[@class='primaryBtn btnApply pushRight']");
-//    private final By searchBtn = By.xpath("//a[contains(@class,'primaryBtn font24 latoBold widgetSearchBtn')]");
-//
-//    //
-//    private final By searchResultLoc = By.xpath("//div[@data-test='component-clusterItem']");
-////    private final By searchResultLoc = By.xpath("//div[@class='listingCard  appendBottom5']");
-//
-//    public FlightBookingPage(WebDriver driver, WebDriverWait wait)
-//    {
-//        this.driver = driver;
-//        this.wait = wait; // use the shared wait from BaseTest as-is
-//    }
-//
-//    // ---------- overlays ----------
-//
-//
-//    public boolean selectFromCity(String from)
-//    {
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        int x = driver.manage().window().getSize().getWidth() / 2;
-//        int y = driver.manage().window().getSize().getHeight() / 2;
-//        js.executeScript("document.elementFromPoint(arguments[0], arguments[1]).click();", x, y);
-//        wait.until(ExpectedConditions.elementToBeClickable(fromTile)).click();
-//        wait.until(ExpectedConditions.elementToBeClickable(fromCityInput)).sendKeys(from);
-////      By fromOptionLocator = By.xpath("//p[contains(text(),'" + from + "')]");
-//        By fromOptionLocator = By.xpath("//li[@id='react-autowhatever-1-section-0-item-0']//div[@class='revampedSuggestionContent']");
-//        WebElement fromOption = wait.until(ExpectedConditions.visibilityOfElementLocated(fromOptionLocator));
-//        js.executeScript("arguments[0].click();", fromOption);
-//        System.out.println("Selected From city: " + from);
-//        wait.until(ExpectedConditions.textToBePresentInElementValue(fromTile, from));
-//        String fromCityText = wait.until(ExpectedConditions.elementToBeClickable(fromTile)).getAttribute("value");
-//        return fromCityText.contains(from);
-//    }
-//
-//    // Select To city with dropdown
-//    public boolean selectToCity(String to) {
-//        wait.until(ExpectedConditions.elementToBeClickable(toTile)).click();
-//        wait.until(ExpectedConditions.elementToBeClickable(toCityInput)).sendKeys(to);
-//        //By fromOptionLocator = By.xpath("//p[contains(text(),'" + to + "')]");
-//        By fromOptionLocator = By.xpath("//li[@id='react-autowhatever-1-section-0-item-0']//div[@class='revampedSearchSuggestionMain']");
-//        WebElement fromOption = wait.until(ExpectedConditions.visibilityOfElementLocated(fromOptionLocator));
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        js.executeScript("arguments[0].click();", fromOption);
-//        System.out.println("Selected To city: " + to);
-//        wait.until(ExpectedConditions.textToBePresentInElementValue(toTile, to));
-//        String toCityText = wait.until(ExpectedConditions.elementToBeClickable(toTile)).getAttribute("value");
-//        return toCityText.contains(to);
-//    }
-//
-//
-//    public void selectDate(WebDriver driver, String day, String mYear)
-//    {
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//
-//        // 1. Open the calendar
-//        wait.until(ExpectedConditions.elementToBeClickable(departureTile)).click();
-//
-//        // 2. Loop to find the correct Month/Year
-//        boolean monthFound = false;
-//        while (!monthFound) {
-//            List<WebElement> visibleMonths = driver.findElements(dateCaption);
-//            for (WebElement month : visibleMonths) {
-//                if (month.getText().equalsIgnoreCase(mYear)) {
-//                    monthFound = true;
-//                    break;
-//                }
-//            }
-//            if (!monthFound) {
-//                // Click Next Month arrow - Re-finding every time to avoid StaleElement
-//                WebElement nextArrow = wait.until(ExpectedConditions.elementToBeClickable(nextMonthLocator));
-//                nextArrow.click();
-//            }
-//        }
-//
-//        // 3. Find the date within the correct month
-//        // We use an XPath that targets the specific month container and then the day number
-//        String dateXpath = "//div[contains(.,'" + mYear + "')]/ancestor::div[@class='DayPicker-Month']" +
-//                "//div[@class='DayPicker-Day']//p[text()='" + day + "']";
-//
-//        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(dateXpath))).click();
-//        System.out.println("Date " + day + " for " + mYear + " selected successfully!");
-//        wait.until(ExpectedConditions.elementToBeClickable(regularBtn)).click();
-//    }
-//
-//
-//    public void travellerSelectAdult(WebDriver driver, String adult)
-//    {
-//          //By applyAdultTravellers = By.xpath("//li[@data-cy='adults-" + adult+ "']");
-//
-//          WebElement TravellerSelect = wait.until(ExpectedConditions.elementToBeClickable(travellers));
-//          TravellerSelect.click();
-//          List<WebElement> adultTravellers = driver.findElements((applyAdultTravellers));
-//          for(WebElement getAdult : adultTravellers)
-//          {
-//            if(getAdult.getText().equals(adult))
-//            {
-//                getAdult.click();
-//                break;
-//            }
-//        }
-//    }
-//
-//    public void travellerSelectChild(WebDriver driver, String child)
-//    {
-//        List<WebElement> childTravellers = driver.findElements((applyChildTravellers));
-//        for(WebElement getChild : childTravellers)
-//        {
-//            if(getChild.getText().equals(child))
-//            {
-//                getChild.click();
-//                break;
-//            }
-//        }
-//    }
-//    public void travellerSelectInfant(WebDriver driver, String child)
-//    {
-//        List<WebElement> infantTravellers = driver.findElements((applyInfantsTravellers));
-//        for(WebElement getInfant : infantTravellers)
-//        {
-//            if(getInfant.getText().equals(child))
-//            {
-//                getInfant.click();
-//                break;
-//            }
-//        }
-//    }
-//
-//    public void selectClass(WebDriver driver, String classToGive) {
-//        // 1. Select the Class
-//        List<WebElement> allClasses = driver.findElements(classesAvailable);
-//        boolean classFound = false;
-//
-//        for (WebElement cl : allClasses) {
-//            // Clean the text to avoid hidden newlines
-//            String availableClass = cl.getText().trim().replace("\n", " ");
-//
-//            if (availableClass.toLowerCase().contains(classToGive.toLowerCase())) {
-//                cl.click();
-//                // This is the line that was likely missing or not triggering
-//                System.out.println("\n--- Selected Class: " + availableClass + " ---");
-//                classFound = true;
-//                break;
-//            }
-//        }
-//
-//        if(!classFound) {
-//            System.out.println("\n--- Selected Class: Default (Economy) ---");
-//        }
-//    }
-//
-//
-//
-//    public void searchResults(WebDriver driver) {
-//
-//        wait.until(ExpectedConditions.elementToBeClickable(applyBtn)).click();
-//        wait.until(ExpectedConditions.elementToBeClickable(searchBtn)).click();
-//        // --- POPUP HANDLER (Dynamic Check) ---
-//        By popupCancelBtn = By.xpath("//span[@class='bgProperties overlayCrossIcon icon20']");
-//        List<WebElement> popupElements = driver.findElements(popupCancelBtn);
-//
-//        if (popupElements.size() > 0) {
-//            System.out.println("Ad popup detected. Closing now...");
-//            wait.until(ExpectedConditions.elementToBeClickable(popupCancelBtn)).click();
-//
-//            // Brief wait to allow the overlay to disappear from the DOM
-//            wait.until(ExpectedConditions.invisibilityOfElementLocated(popupCancelBtn));
-//        }
-//    }
-//public void printResults(WebDriver driver, String selectedClass) {
-//    wait.until(ExpectedConditions.presenceOfElementLocated(searchResultLoc));
-//
-//    System.out.println("\n===========================================================================");
-//    System.out.println("CLEANED FLIGHT RESULTS FOR: " + selectedClass.toUpperCase());
-//    System.out.println("===========================================================================");
-//    System.out.println(String.format("%-15s | %-12s | %-12s | %-10s | %-10s", "AIRLINE", "FROM", "TO", "TIME", "PRICE"));
-//    System.out.println("---------------------------------------------------------------------------");
-//
-//    // ... rest of your scrolling logic ...
-//
-//
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        java.util.Set<String> processedFlights = new java.util.HashSet<>(); // To avoid duplicates
-//        int totalFlightsFound = 0;
-//        int lastCount = -1;
-//
-//        // Scroll and collect until no more new flights are loaded
-//        while (totalFlightsFound > lastCount) {
-//            lastCount = totalFlightsFound;
-//            List<WebElement> searchResultList = driver.findElements(searchResultLoc);
-//
-//            for (WebElement row : searchResultList) {
-//                // Use a unique key (Airline + Time) to ensure we don't print the same flight twice while scrolling
-//                String rowID = "";
-//
-//                // A. Get Airline Name
-//                List<WebElement> nameElements = row.findElements(By.className("airlineName"));
-//                String airline = !nameElements.isEmpty() ? nameElements.get(0).getText() : "Unknown";
-//
-//                // B. Get Departure Time
-//                List<WebElement> timeElements = row.findElements(By.className("flightTimeInfo"));
-//                String time = !timeElements.isEmpty() ? timeElements.get(0).getText() : "N/A";
-//
-//                rowID = airline + "_" + time;
-//
-//                if (!processedFlights.contains(rowID) && !airline.equals("Unknown")) {
-//                    // C. Get Actual Price
-//                    List<WebElement> priceElements = row.findElements(By.xpath(".//div[contains(@class, 'clusterViewPrice')]/span[not(contains(@class, 'slashedPrice'))]"));
-//                    String price = "N/A";
-//                    if (!priceElements.isEmpty()) {
-//                        price = "Rs. " + priceElements.get(0).getText().replace("₹", "").trim();
-//                    }
-//
-//                    System.out.println(String.format("%-15s | %-12s | %-12s | %-10s | %-10s",
-//                            airline, "Chennai", "Pune", time, price));
-//
-//                    processedFlights.add(rowID);
-//                    totalFlightsFound++;
-//                }
-//            }
-//
-//            // Scroll down to load more flights
-//            js.executeScript("window.scrollBy(0, 1000);");
-//
-//            // Short wait for the Virtual List to render new rows
-//            try { Thread.sleep(1500); } catch (InterruptedException e) { e.printStackTrace(); }
-//
-//            // Optional: Break if you have enough results (e.g., 20 flights) to save time
-//            if (totalFlightsFound > 30) break;
-//        }
-//
-//        System.out.println("---------------------------------------------------------------------------");
-//        System.out.println("Total Unique Flights Found: " + totalFlightsFound);
-//    }
-//}
-//
-//
-//
-//
