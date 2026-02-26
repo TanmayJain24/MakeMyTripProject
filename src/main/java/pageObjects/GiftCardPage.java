@@ -19,7 +19,7 @@ public class GiftCardPage {
         this.wait = wait;
         PageFactory.initElements(driver, this);
     }
-    
+
     @FindBy(xpath = "//img[@alt='minimize']")
     private WebElement closeBtn;
     @FindBy(xpath = "//span[@class='sc-kYxDKI iHnsWm']")
@@ -76,8 +76,8 @@ public class GiftCardPage {
     }
 
     public void SelectAmount(){
-      WebElement priceBtn = wait.until(ExpectedConditions.elementToBeClickable(priceAmount));
-      priceBtn.click();
+        WebElement priceBtn = wait.until(ExpectedConditions.elementToBeClickable(priceAmount));
+        priceBtn.click();
     }
 
     public String getEnteredAmount() {
