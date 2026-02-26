@@ -6,6 +6,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public class InsurancePage {
     private WebDriver driver;
     private WebDriverWait wait;
@@ -18,6 +20,8 @@ public class InsurancePage {
     private WebElement travellerAddBtn;
     @FindBy(xpath = "//button[@class='LandingButtonstyle__LandingButtonStyle-sc-1ldh0sr-0 glaPGB']")
     private WebElement viewPlansBtn;
+    @FindBy(xpath = "//div[@data-test-id='InsurancePlansComp-InsurancePlansCompStyle']")
+    private WebElement insuranceCards;
 
     public InsurancePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -52,7 +56,9 @@ public class InsurancePage {
     public void scrollToBottom() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         // Scrolls to the absolute bottom of the page
+        wait.until(ExpectedConditions.visibilityOfAllElements(insuranceCards));
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        wait.until(ExpectedConditions.visibilityOfAllElements(insuranceCards));
         System.out.println("Scrolled to the end of the page.");
     }
 }

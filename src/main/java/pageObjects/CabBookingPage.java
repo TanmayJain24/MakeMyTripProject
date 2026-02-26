@@ -163,13 +163,12 @@ public class CabBookingPage {
             String priceText = priceElements.get(i).getText().replaceAll("[^0-9]", "");
             if (!priceText.isEmpty()) {
                 prices.add(Integer.parseInt(priceText));
-                Log.info(priceText);
+                System.out.print(priceText);
                 if (i < priceElements.size() - 1) {
-                    Log.info(", ");
+                    System.out.print(", ");
                 }
             }
         }
-        Log.info("");
         int lowestPrice = 0;
         if (!prices.isEmpty()) {
             lowestPrice = Collections.min(prices); // store lowest price

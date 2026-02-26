@@ -22,7 +22,7 @@ public class BaseTest {
     //Locators
     By closeBtn = By.xpath("//span[@role='presentation']");
 
-    @BeforeSuite
+    @BeforeMethod
     public void setUp() {
         String browser = ConfigReader.getProperty("browser");
         String url = ConfigReader.getProperty("baseUrl");
@@ -63,7 +63,7 @@ public class BaseTest {
         }
     }
 
-    @AfterSuite
+    @AfterMethod
     public void tearDown() {
         if (driver != null) {
             driver.quit();

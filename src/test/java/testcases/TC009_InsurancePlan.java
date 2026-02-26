@@ -7,14 +7,13 @@ import pageObjects.InsurancePage;
 public class TC009_InsurancePlan extends BaseTest {
 
     @Test
-    public void testInsurancePlanWorkflow() {
+    public void testInsurancePlanWorkflow() throws InterruptedException {
         InsurancePage insurancePage = new InsurancePage(driver, wait);
         insurancePage.clickInsuranceTab();
         insurancePage.selectThailand();
         insurancePage.addOneTraveller();
         insurancePage.clickViewPlans();
         insurancePage.scrollToBottom();
-
         System.out.println("Insurance Test Case 1 completed successfully.");
     }
 }

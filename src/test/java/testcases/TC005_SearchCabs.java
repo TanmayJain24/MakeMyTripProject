@@ -11,6 +11,9 @@ public class TC005_SearchCabs extends BaseTest {
     public void selectCabsTest() {
         CabBookingPage cabPage = new CabBookingPage(driver, wait);
 
+        cabPage.openCabsPage();
+        cabPage.clickOneWayOutstation();
+
         boolean fromCitySelected = cabPage.selectFromCity("Delhi");
         Assert.assertTrue(fromCitySelected, "From city not set correctly!");
 
