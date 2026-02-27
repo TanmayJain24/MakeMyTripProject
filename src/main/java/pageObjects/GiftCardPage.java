@@ -22,7 +22,7 @@ public class GiftCardPage {
     @FindBy(xpath = "//img[@alt='minimize']")
     private WebElement closeBtn;
 
-    @FindBy(xpath = "//span[@class='sc-kYxDKI iHnsWm']")
+    @FindBy(xpath = "//span[normalize-space()='Bus']")
     private WebElement busBtn;
 
     @FindBy(xpath = "//a[normalize-space()='About US']")
