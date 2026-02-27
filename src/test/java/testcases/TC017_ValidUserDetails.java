@@ -4,14 +4,19 @@ import basetest.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.GiftCardPage;
+import utilities.ConfigReader;
 
 public class TC017_ValidUserDetails extends BaseTest {
     @Test
     public void UserDetails() throws InterruptedException {
         GiftCardPage gift = new GiftCardPage(driver, wait);
-        String name = "John Doe";
-        String mobile = "9876543210";
-        String email = "john.doe@gmail.com";
+        gift.openGiftCardSection();
+        gift.clickGiftCard();
+
+        String name   = ConfigReader.getProperty("valid.name");
+        String mobile = ConfigReader.getProperty("valid.mobile");
+        String email  = ConfigReader.getProperty("valid.email");
+
         gift.userDetails(name, mobile, email);
 
         Assert.assertTrue(name.matches("^[A-Za-z]+\\s[A-Za-z]+$"), "Name should be a valid full name");
