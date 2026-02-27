@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import pageObjects.CabBookingPage;
 import utilities.ScreenshotUtility;
 
-public class TC006_PrintLowestPrice extends BaseTest{
+public class TC004_PrintLowestPrice extends BaseTest{
     @Test
     public void printLowestPriceTest() {
         CabBookingPage cabPage = new CabBookingPage(driver, wait);

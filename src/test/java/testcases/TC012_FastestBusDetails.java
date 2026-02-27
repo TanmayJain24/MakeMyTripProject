@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import pageObjects.BusBookingPage;
 
 public class TC012_FastestBusDetails extends BaseTest {
-
     @Test
     public void testIdentifyFastestBus() {
         BusBookingPage busPage = new BusBookingPage(driver, wait);

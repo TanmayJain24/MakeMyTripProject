@@ -4,9 +4,9 @@ import basetest.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.BusBookingPage;
+import utilities.ScreenshotUtility;
 
 public class TC011_ApplyFilter extends BaseTest {
-
     @Test
     public void testACAndSleeperBusFilter() {
         BusBookingPage busPage = new BusBookingPage(driver, wait);
@@ -18,6 +18,7 @@ public class TC011_ApplyFilter extends BaseTest {
         System.out.println("Applying AC and Sleeper filters...");
         busPage.applyFilters();
         int filteredBusCount = busPage.getBusCount();
+        ScreenshotUtility.takeScreenShot(driver, "FilteredBus");
         System.out.println("===============================================");
         System.out.println("FILTER RESULTS: AC + Sleeper");
         System.out.println("Total Filtered Buses: " + filteredBusCount);

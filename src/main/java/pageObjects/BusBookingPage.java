@@ -49,9 +49,11 @@ public class BusBookingPage {
         this.wait = wait;
         PageFactory.initElements(driver, this);
     }
+
     public void navigateToBuses() {
         wait.until(ExpectedConditions.elementToBeClickable(busTab)).click();
     }
+
     public void enterFromCity(String from) {
         WebElement src = wait.until(ExpectedConditions.visibilityOf(sourceInput));
         src.clear();

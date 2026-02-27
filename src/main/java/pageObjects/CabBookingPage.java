@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,105 +19,117 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utilities.CommonCode;
 import utilities.Log;
 
 public class CabBookingPage {
     private WebDriver driver;
     private WebDriverWait wait;
+    private CommonCode common;
 
     public CabBookingPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
+        this.common = new CommonCode(driver, Duration.ofSeconds(20));
         PageFactory.initElements(driver, this);
     }
 
     @FindBy(xpath = "//span[text()='Cabs']")
     private WebElement cabsBtn;
+
     @FindBy(xpath = "//span[normalize-space()='Outstation One-way']")
     private WebElement oneWayLocator;
+
     @FindBy(xpath = "//input[@id='downshift-1-input']")
     private WebElement fromCityInput;
+
     @FindBy(xpath = "//input[@id='downshift-2-input']")
     private WebElement toCityInput;
+
     @FindBy(xpath = "//div[@class='HomeSearchWidgetstyles__PickupDate-sc-1tz7y2x-6 fvVrBA']//span[@class='HomeSearchWidgetstyles__DateTxt-sc-1tz7y2x-7 dmEwXM']")
     private WebElement departureLabel;
+
     @FindBy(xpath = "//p[@class='dcalendarstyles__MonthNamePara-sc-s6w5s3-3 kvJFRU']")
     private WebElement calendarHeader;
+
     @FindBy(xpath = "//div[@class='dcalendarstyles__MonthChangeRightArrowDiv-sc-s6w5s3-16 cRfdOs']")
-    private WebElement nextMonthButton;
+    private WebElement nextMonthBtn;
+
     @FindBy(xpath = "//div[@class='HomeSearchWidgetstyles__PickupTime-sc-1tz7y2x-8 fqIfzQ']/span")
-    private WebElement pickupLocator;
+    private WebElement pickUpTime;
+
     @FindBy(xpath = "//section[@class='TimeDropdownstyles__TimeDropdown-sc-d6504d-0 fREELa']/ul/li")
     private List<WebElement> pickupDropdown;
+
     @FindBy(xpath = "//button[normalize-space()='SEARCH CABS']")
-    private WebElement searchButton;
+    private WebElement searchBtn;
+
     @FindBy(xpath = "//span[@class='cabDetailsCard_price__SHN6W']")
     private List<WebElement> cabPrices;
+
     @FindBy(xpath = "//div[@class='cabDetailsCard_cabDetails__X3Adv']")
     private List<WebElement> cabCards;
+
     @FindBy(xpath = "//span[normalize-space(text())='SELECT CAB']")
     private List<WebElement> selectBtns;
+
     @FindBy(xpath = "//span[@class='sc-fWnslK sc-kpOvIu dsTpEE journeyduration_journeyDurationText__Q4fcc']")
     private WebElement cabDate;
 
     // Navigate to Cabs page
     public void openCabsPage() {
-        wait.until(ExpectedConditions.elementToBeClickable(cabsBtn)).click();
+        common.clickWhenClickable(cabsBtn);
         Log.info("Navigated to Cabs page.");
     }
 
     // Click One Way Outstation Cab option
-    public boolean clickOneWayOutstation(){
-        WebElement oneWayOutstationBtn = wait.until(ExpectedConditions.elementToBeClickable(oneWayLocator));
-        try{
-            oneWayOutstationBtn.click();
+    public boolean clickOneWayOutstation() {
+        try {
+            common.clickWhenClickable(oneWayLocator);
             return true;
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
 
     // Select From city with dropdown
     public boolean selectFromCity(String from) {
-        wait.until(ExpectedConditions.elementToBeClickable(fromCityInput)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(fromCityInput)).sendKeys(from);
+        common.clickWhenClickable(fromCityInput);
+        common.enterText(fromCityInput, from);
         By fromOptionLocator = By.xpath("//p[contains(text(),'" + from + "')]");
         WebElement fromOption = wait.until(ExpectedConditions.visibilityOfElementLocated(fromOptionLocator));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", fromOption);
         Log.info("Selected From city: " + from);
         wait.until(ExpectedConditions.textToBePresentInElementValue(fromCityInput, from));
-        String fromCityText = wait.until(ExpectedConditions.elementToBeClickable(fromCityInput)).getAttribute("value");
+        String fromCityText = common.waitUntilClickable(fromCityInput).getAttribute("value");
         return fromCityText.contains(from);
     }
 
     // Select To city with dropdown
     public boolean selectToCity(String to) {
-        wait.until(ExpectedConditions.elementToBeClickable(toCityInput)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(toCityInput)).sendKeys(to);
+        common.clickWhenClickable(toCityInput);
+        common.enterText(toCityInput, to);
         By fromOptionLocator = By.xpath("//p[contains(text(),'" + to + "')]");
         WebElement fromOption = wait.until(ExpectedConditions.visibilityOfElementLocated(fromOptionLocator));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", fromOption);
         Log.info("Selected To city: " + to);
         wait.until(ExpectedConditions.textToBePresentInElementValue(toCityInput, to));
-        String toCityText = wait.until(ExpectedConditions.elementToBeClickable(toCityInput)).getAttribute("value");
+        String toCityText = common.waitUntilClickable(toCityInput).getAttribute("value");
         return toCityText.contains(to);
     }
 
     // Select the Departure date
     public boolean selectDepartureDate(String day, String targetMonthYear) {
-        wait.until(ExpectedConditions.elementToBeClickable(departureLabel)).click();
+        common.clickWhenClickable(departureLabel);
         String currentMonthYear = wait.until(ExpectedConditions.visibilityOf(calendarHeader)).getText();
         while (!currentMonthYear.equalsIgnoreCase(targetMonthYear)) {
-            WebElement nextBtn = wait.until(ExpectedConditions.elementToBeClickable(nextMonthButton));
-            nextBtn.click();
+            common.clickWhenClickable(nextMonthBtn);
             currentMonthYear = wait.until(ExpectedConditions.visibilityOf(calendarHeader)).getText();
         }
         By dateLocator = By.xpath("//ul[contains(@class,'DateWrapDiv')]//span[normalize-space(text())='" + day + "']");
-        WebElement dateElement = wait.until(ExpectedConditions.elementToBeClickable(dateLocator));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", dateElement);
+        common.safeClick(dateLocator);
         Log.info("Selected departure date: " + day + " " + targetMonthYear);
         String selectedDate = wait.until(ExpectedConditions.visibilityOf(departureLabel)).getText();
         return selectedDate.contains(day);
@@ -124,8 +138,7 @@ public class CabBookingPage {
     //Select pick-up Time
     public boolean selectPickupTime(String time) {
         // Locate all the <li> elements inside the timepicker dropdown
-        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(pickupLocator));
-        dropdown.click();
+        common.clickWhenClickable(pickUpTime);
         List<WebElement> timeOptions = wait.until(ExpectedConditions.visibilityOfAllElements(pickupDropdown));
         for (WebElement option : timeOptions) {
             String timeText = option.getText().trim();
@@ -135,12 +148,12 @@ public class CabBookingPage {
                 break;
             }
         }
-        return wait.until(ExpectedConditions.visibilityOf(pickupLocator)).getText().trim().equals(time);
+        return wait.until(ExpectedConditions.visibilityOf(pickUpTime)).getText().trim().equals(time);
     }
 
     // Click Search
     public void searchCabs() {
-        wait.until(ExpectedConditions.elementToBeClickable(searchButton)).click();
+        common.clickWhenClickable(searchBtn);
         Log.info("Search button clicked.");
     }
 

@@ -22,7 +22,7 @@ public class GiftCardPage {
 
     @FindBy(xpath = "//img[@alt='minimize']")
     private WebElement closeBtn;
-    @FindBy(xpath = "//span[@class='sc-kYxDKI iHnsWm']")
+    @FindBy(xpath = "//span[normalize-space()='Bus']")
     private WebElement busBtn;
     @FindBy(xpath = "//a[normalize-space()='About US']")
     private WebElement scrollGiftCard;
@@ -139,7 +139,6 @@ public class GiftCardPage {
     }
 
     public String userDetailsInvalid(String name, String mobile, String email) {
-        driver.navigate().back();
         WebElement nameField = wait.until(ExpectedConditions.visibilityOf(nameLocator));
         WebElement mobileField = wait.until(ExpectedConditions.visibilityOf(mobileNoLocator));
         WebElement emailField = wait.until(ExpectedConditions.visibilityOf(userEmail));
