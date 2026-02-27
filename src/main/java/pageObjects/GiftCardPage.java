@@ -142,8 +142,6 @@ public class GiftCardPage {
      * Negative flow: enter possibly invalid values, try to submit, and return a summary string.
      */
     public String userDetailsInvalid(String name, String mobile, String email) {
-        driver.navigate().back();
-
         // Name
         common.scrollIntoViewCenter(common.visible(nameLocator));
         common.clearAndType(nameLocator, name);

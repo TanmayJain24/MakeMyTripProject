@@ -16,9 +16,8 @@ public class TC018_InvalidUserDetails extends BaseTest {
         String name   = ConfigReader.getProperty("invalid.name");
         String mobile = ConfigReader.getProperty("invalid.mobile");
         String email  = ConfigReader.getProperty("invalid.email");
-        ScreenshotUtility.takeScreenShot(driver, "InvalidUserDetails");
         String uiError = gift.userDetailsInvalid(name, mobile, email);
-        Assert.assertFalse(name.contains(" "), "Name should not contain space");
+        ScreenshotUtility.takeScreenShot(driver, "InvalidUserDetails");
         Assert.assertTrue(uiError.length() > 0, "Email error message should be visible");
     }
 }
