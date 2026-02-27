@@ -12,10 +12,11 @@ public class TC016_SelectPriceShowsInEnterAmount extends BaseTest {
         GiftCardPage gift = new GiftCardPage(driver , wait);
         gift.openGiftCardSection();
         gift.clickGiftCard();
-        gift.SelectAmount();
+        gift.selectAmount();
+         String expectedGiftAmt = "10000";
         String actual = gift.getEnteredAmount();
         ScreenshotUtility.takeScreenShot(driver, "ShowGiftAmount");
         System.out.println(actual);
-        Assert.assertEquals(actual, "10000", "Entered amount is incorrect!");
+        Assert.assertEquals(actual, expectedGiftAmt, "Entered amount is incorrect!");
     }
 }

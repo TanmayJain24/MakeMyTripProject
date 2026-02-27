@@ -4,6 +4,7 @@ import basetest.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.GiftCardPage;
+import utilities.ConfigReader;
 
 public class TC017_ValidUserDetails extends BaseTest {
     @Test
@@ -11,10 +12,11 @@ public class TC017_ValidUserDetails extends BaseTest {
         GiftCardPage gift = new GiftCardPage(driver, wait);
         gift.openGiftCardSection();
         gift.clickGiftCard();
-        String name = "John Doe";
-        String mobile = "9876543210";
-        String email = "john.doe@gmail.com";
+        String name   = ConfigReader.getProperty("valid.name");
+        String mobile = ConfigReader.getProperty("valid.mobile");
+        String email  = ConfigReader.getProperty("valid.email");
         gift.userDetails(name, mobile, email);
+
         Assert.assertTrue(name.matches("^[A-Za-z]+\\s[A-Za-z]+$"), "Name should be a valid full name");
         String digitsOnly = mobile.replaceAll("\\D", "");
         Assert.assertEquals(digitsOnly.length(), 10, "Mobile must be exactly 10 digits");

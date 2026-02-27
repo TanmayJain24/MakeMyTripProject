@@ -11,17 +11,16 @@
             <class name="testcases.TC004_PrintLowestPrice"/>
             <class name="testcases.TC005_SelectLowestCab"/>
             <class name="testcases.TC006_ValidateDate"/>
-
-<!--            <class name="testcases.TC009_InsurancePlan"/>-->
-<!--            <class name="testcases.TC010_BusCount"/>-->
-<!--            <class name="testcases.TC011_ApplyFilter"/>-->
-<!--            <class name="testcases.TC012_FastestBusDetails"/>-->
-<!--            <class name="testcases.TC013_HighestRating"/>-->
-<!--            <class name="testcases.TC014_OpenGiftCard"/>-->
-<!--            <class name="testcases.TC015_PrintGiftCards"/>-->
-<!--            <class name="testcases.TC016_SelectPriceShowsInEnterAmount"/>-->
-<!--            <class name="testcases.TC017_ValidUserDetails"/>-->
-<!--            <class name="testcases.TC018_InvalidUserDetails"/>-->
+            <class name="testcases.TC009_InsurancePlan"/>
+            <class name="testcases.TC010_BusCount"/>
+            <class name="testcases.TC011_ApplyFilter"/>
+            <class name="testcases.TC012_FastestBusDetails"/>
+            <class name="testcases.TC013_HighestRating"/>
+            <class name="testcases.TC014_OpenGiftCard"/>
+            <class name="testcases.TC015_PrintGiftCards"/>
+            <class name="testcases.TC016_SelectPriceShowsInEnterAmount"/>
+            <class name="testcases.TC017_ValidUserDetails"/>
+            <class name="testcases.TC018_InvalidUserDetails"/>
         </classes>
     </test>
 </suite>
