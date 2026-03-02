@@ -13,6 +13,7 @@ public class BusBookingPage {
 
     @FindBy(xpath = "//span[text()='Bus']")
     private WebElement busTab;
+
     @FindBy(xpath = "//input[@name='autosuggestBusSRPSrcHomeName']")
     private WebElement sourceInput;
     @FindBy(xpath = "//input[@name='autosuggest']")
@@ -42,7 +43,7 @@ public class BusBookingPage {
     @FindBy(xpath = "(//p[@class='SrpActiveCardstyles__BusBoldtxtPara-sc-yk1110-7 fqXqTO'])[1]")
     private WebElement firstBusNameP5;
     @FindBy(xpath = "(//span[@class='SrpActiveCardstyles__BusReviewHighRatingSpan-sc-yk1110-13 dCCUco'])[1]")
-    private WebElement firstBusRating;
+    private WebElement firstBusRating;  //change xpath with contains
 
     public BusBookingPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;

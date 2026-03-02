@@ -15,6 +15,6 @@ public class TC009_InsurancePlan extends BaseTest {
         insurancePage.clickViewPlans();
         insurancePage.scrollToBottom();
         ScreenshotUtility.takeScreenShot(driver, "InsurancePlan");
-        System.out.println("Insurance Test Case 1 completed successfully.");
+        System.out.println("Insurance Test Case 1 completed successfully.");//log
     }
 }

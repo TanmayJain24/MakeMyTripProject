@@ -14,9 +14,9 @@ public class InsurancePage {
     private WebElement insuranceTabBtn;
     @FindBy(xpath = "//span[text()='Thailand']")
     private WebElement thailandCheckbox;
-    @FindBy(xpath = "//button[@class='TravellingToWidgetstyle__CounterBtn-sc-56hbau-14']")
+    @FindBy(xpath = "//button[@class='TravellingToWidgetstyle__CounterBtn-sc-56hbau-14']")// change it
     private WebElement travellerAddBtn;
-    @FindBy(xpath = "//button[@class='LandingButtonstyle__LandingButtonStyle-sc-1ldh0sr-0 glaPGB']")
+    @FindBy(xpath = "//button[@class='LandingButtonstyle__LandingButtonStyle-sc-1ldh0sr-0 glaPGB']")// change it
     private WebElement viewPlansBtn;
 
     public InsurancePage(WebDriver driver, WebDriverWait wait) {
@@ -32,7 +32,7 @@ public class InsurancePage {
 
     public void selectThailand() {
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(thailandCheckbox));
-        if (!element.isSelected()) {
+        if (!element.isSelected()) {//add in common code
             element.click();
         }
         System.out.println("Thailand checkbox selected.");
@@ -54,4 +54,4 @@ public class InsurancePage {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         System.out.println("Scrolled to the end of the page.");
     }
-}
+}// syso
