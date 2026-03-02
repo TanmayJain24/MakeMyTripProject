@@ -1,7 +1,6 @@
 package basetest;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,10 +18,7 @@ public class BaseTest {
     protected static WebDriver driver;
     protected static WebDriverWait wait;
 
-    //Locators
-    By closeBtn = By.xpath("//span[@role='presentation']");
-
-    @BeforeMethod
+    @BeforeClass
     public void setUp() {
         String browser = ConfigReader.getProperty("browser");
         String url = ConfigReader.getProperty("baseUrl");
@@ -54,6 +50,7 @@ public class BaseTest {
     public void handleLoginPopup() {
         try {
             // Wait up to 5 seconds for popup close button
+            By closeBtn = By.xpath("//span[@role='presentation']");
             WebElement popupClose = wait.until(ExpectedConditions.visibilityOfElementLocated(closeBtn));
             popupClose.click();
             Log.info("Login popup closed.");
@@ -63,7 +60,7 @@ public class BaseTest {
         }
     }
 
-    @AfterMethod
+    @AfterClass
     public void tearDown() {
         if (driver != null) {
             driver.quit();
