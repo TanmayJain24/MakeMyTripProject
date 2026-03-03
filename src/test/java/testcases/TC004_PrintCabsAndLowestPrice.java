@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TC004_PrintCabsAndLowestPrice extends BaseTest{
     @Test
-    public void printCabsAndLowestPriceTest() throws InterruptedException {
+    public void printCabsAndLowestPriceTest() {
         CabBookingPage cabPage = new CabBookingPage(driver, wait);
         cabPage.openCabsPage();
         cabPage.clickCabServices("Outstation One-way");
