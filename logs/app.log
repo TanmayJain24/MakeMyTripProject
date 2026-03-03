@@ -1700,3 +1700,92 @@
 2026-03-03 12:10:03 INFO  utilities.Log - Selected special request: Roof Carrier
 2026-03-03 12:10:03 INFO  utilities.Log - Price before Roof Carrier: 1835
 2026-03-03 12:10:03 INFO  utilities.Log - Price after Roof Carrier: 1993
+2026-03-03 13:39:56 INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\2464124\IdeaProjects\FinalProject\testng.xml
+
+2026-03-03 13:40:04 INFO  utilities.Log - Login popup closed.
+2026-03-03 13:40:11 INFO  utilities.Log - Login popup closed.
+2026-03-03 13:40:17 INFO  utilities.Log - Navigated to Cabs page.
+2026-03-03 13:40:24 INFO  utilities.Log - Login popup closed.
+2026-03-03 13:40:28 INFO  utilities.Log - Navigated to Cabs page.
+2026-03-03 13:40:28 INFO  utilities.Log - Trip Type Selected
+2026-03-03 13:40:30 INFO  utilities.Log - Selected From city: delhi cantt
+2026-03-03 13:40:32 INFO  utilities.Log - Selected To city: manali, himachal pradesh
+2026-03-03 13:40:33 INFO  utilities.Log - Selected departure date: 26 March 2026
+2026-03-03 13:40:38 INFO  utilities.Log - Search button clicked.
+2026-03-03 13:40:39 INFO  utilities.Log - Cab 1: Name = WagonR, Swift | Price = 6301 | Rating = 5/5
+2026-03-03 13:40:39 INFO  utilities.Log - Cab 2: Name = Dzire, Etios | Price = 6435 | Rating = 4.1/5
+2026-03-03 13:40:39 INFO  utilities.Log - Cab 3: Name = WagonR, Swift | Price = 7381 | Rating = 5/5
+2026-03-03 13:40:39 INFO  utilities.Log - Cab 4: Name = Dzire, Etios | Price = 7515 | Rating = 4.1/5
+2026-03-03 13:40:39 INFO  utilities.Log - Cab 5: Name = Xylo, Ertiga | Price = 8752 | Rating = 4.3/5
+2026-03-03 13:40:39 INFO  utilities.Log - Cab 6: Name = Xylo, Ertiga | Price = 9940 | Rating = 4.3/5
+2026-03-03 13:40:39 INFO  utilities.Log - Cab 7: Name = Toyota Innova | Price = 13550 | Rating = NEW
+2026-03-03 13:40:39 INFO  utilities.Log - Cab 8: Name = Innova Crysta | Price = 14050 | Rating = 3.5/5
+2026-03-03 13:40:46 INFO  utilities.Log - Login popup closed.
+2026-03-03 13:40:50 INFO  utilities.Log - Navigated to Cabs page.
+2026-03-03 13:40:51 INFO  utilities.Log - Trip Type Selected
+2026-03-03 13:40:52 INFO  utilities.Log - Selected From city: mumbai, maharashtra
+2026-03-03 13:40:54 INFO  utilities.Log - Selected To city: manali, himachal pradesh
+2026-03-03 13:40:55 INFO  utilities.Log - Selected departure date: 26 March 2026
+2026-03-03 13:41:00 INFO  utilities.Log - Search button clicked.
+2026-03-03 13:41:20 INFO  utilities.Log - No popup appeared after selecting cab type
+2026-03-03 13:41:21 INFO  utilities.Log - Cab Type selected: SUV
+2026-03-03 13:41:21 INFO  utilities.Log - Available prices: 
+2026-03-03 13:41:21 INFO  utilities.Log - Lowest cab price: 37965
+2026-03-03 13:41:21 INFO  utilities.Log - Cab 1: Name = Xylo, Ertiga | Price = 37965 | Rating = 4.1/5
+2026-03-03 13:41:21 INFO  utilities.Log - Cab 2: Name = Xylo, Ertiga | Price = 52742 | Rating = 4.2/5
+2026-03-03 13:41:21 INFO  utilities.Log - Cab 3: Name = Innova Crysta | Price = 72424 | Rating = 4.1/5
+2026-03-03 13:41:30 INFO  utilities.Log - Login popup closed.
+2026-03-03 13:41:34 INFO  utilities.Log - Navigated to Cabs page.
+2026-03-03 13:41:35 INFO  utilities.Log - Trip Type Selected
+2026-03-03 13:41:36 INFO  utilities.Log - Selected From city: t nagar bus stop
+2026-03-03 13:41:37 INFO  utilities.Log - Selected departure date: 24 March 2026
+2026-03-03 13:41:37 INFO  utilities.Log - Rental hours selected: 3 hr
+2026-03-03 13:41:42 INFO  utilities.Log - Search button clicked.
+2026-03-03 13:41:42 INFO  utilities.Log - Cab Model selected: Innova Crysta
+2026-03-03 13:41:42 INFO  utilities.Log - Fuel Type selected: Diesel
+2026-03-03 13:41:42 INFO  utilities.Log - Available prices: 
+2026-03-03 13:41:42 INFO  utilities.Log - Lowest cab price: 1527
+2026-03-03 13:41:42 INFO  utilities.Log - Clicked Select Cab for price: 1527
+2026-03-03 13:41:52 INFO  utilities.Log - Login popup closed.
+2026-03-03 13:41:56 INFO  utilities.Log - Navigated to Cabs page.
+2026-03-03 13:41:57 INFO  utilities.Log - Trip Type Selected
+2026-03-03 13:41:58 INFO  utilities.Log - Selected From city: pune international airport
+2026-03-03 13:42:00 INFO  utilities.Log - Selected To city: chhatrapati shivaji maharaj international airport road
+2026-03-03 13:42:01 INFO  utilities.Log - Selected departure date: 26 March 2026
+2026-03-03 13:42:07 INFO  utilities.Log - Search button clicked.
+2026-03-03 13:42:07 INFO  utilities.Log - Popup handled by clicking 'Okay'
+2026-03-03 13:42:07 INFO  utilities.Log - Cab Type selected: Sedan
+2026-03-03 13:42:08 INFO  utilities.Log - Available prices: 
+2026-03-03 13:42:08 INFO  utilities.Log - Lowest cab price: 1438
+2026-03-03 13:42:08 INFO  utilities.Log - Clicked Select Cab for price: 1438
+2026-03-03 13:42:09 INFO  utilities.Log - Validation PASSED → Expected: 2026-03-26 | Actual: 2026-03-26
+2026-03-03 13:42:17 INFO  utilities.Log - Login popup closed.
+2026-03-03 13:42:21 INFO  utilities.Log - Navigated to Cabs page.
+2026-03-03 13:42:21 INFO  utilities.Log - Trip Type Selected
+2026-03-03 13:42:22 INFO  utilities.Log - Selected From city: t nagar bus stop
+2026-03-03 13:42:23 INFO  utilities.Log - Selected departure date: 24 March 2026
+2026-03-03 13:42:23 INFO  utilities.Log - Rental hours selected: 3 hr
+2026-03-03 13:42:28 INFO  utilities.Log - Search button clicked.
+2026-03-03 13:42:28 INFO  utilities.Log - Cab Model selected: Innova Crysta
+2026-03-03 13:42:28 INFO  utilities.Log - Fuel Type selected: Diesel
+2026-03-03 13:42:28 INFO  utilities.Log - Available prices: 
+2026-03-03 13:42:28 INFO  utilities.Log - Lowest cab price: 1527
+2026-03-03 13:42:29 INFO  utilities.Log - Clicked Select Cab for price: 1527
+2026-03-03 13:42:30 INFO  utilities.Log - Selected special request: Roof Carrier
+2026-03-03 13:42:30 INFO  utilities.Log - Price before Roof Carrier: 1835
+2026-03-03 13:42:30 INFO  utilities.Log - Price after Roof Carrier: 1993
+2026-03-03 13:42:38 INFO  utilities.Log - Login popup closed.
+2026-03-03 13:42:48 INFO  utilities.Log - Login popup closed.
+2026-03-03 13:43:01 INFO  utilities.Log - Login popup closed.
+2026-03-03 13:43:16 INFO  utilities.Log - Login popup closed.
+2026-03-03 13:43:31 INFO  utilities.Log - Login popup closed.
+2026-03-03 13:43:46 INFO  utilities.Log - Login popup closed.
+2026-03-03 13:44:04 INFO  utilities.Log - Login popup closed.
+2026-03-03 13:44:25 INFO  utilities.Log - Login popup closed.
+2026-03-03 13:44:43 INFO  utilities.Log - Login popup closed.
+2026-03-03 13:45:10 INFO  utilities.Log - Login popup closed.
+2026-03-03 13:46:06 INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\2464124\AppData\Local\JetBrains\IdeaIC2025.2\temp-testng-customsuite.xml
+
+2026-03-03 13:46:11 INFO  utilities.Log - Login popup closed.

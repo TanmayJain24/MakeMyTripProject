@@ -79,13 +79,11 @@ public class CabBookingPage {
     By cabRating = By.xpath("//span[@class='rating_rating__diqPU']");
     By selectBtns = By.xpath("//span[contains(text(), 'SELECT CAB')]");
 
-    // Navigate to Cabs page
     public void openCabsPage() {
         common.clickWhenClickable(cabsBtn);
         Log.info("Navigated to Cabs page.");
     }
 
-    // Click One Way Outstation Cab option
     public boolean clickCabServices(String cabService) {
         By serviceType = By.xpath("//span[normalize-space()='" + cabService + "']");
         try {
@@ -97,7 +95,6 @@ public class CabBookingPage {
         }
     }
 
-    // Select From city with dropdown
     public boolean selectPickupLocation(String from) {
         common.clickWhenClickable(fromCityInput);
         common.enterText(fromCityInput, from);
@@ -110,7 +107,6 @@ public class CabBookingPage {
         return fromCityText.contains(from);
     }
 
-    // Select To city with dropdown
     public boolean selectDropLocation(String to) {
         common.clickWhenClickable(toCityInput);
         common.enterText(toCityInput, to);
@@ -123,7 +119,6 @@ public class CabBookingPage {
         return toCityText.contains(to);
     }
 
-    // Select the Departure date
     public boolean selectPickUpDate(String day, String targetMonthYear) {
         common.clickWhenClickable(pickUpLabel);
         String currentMonthYear = common.visible(calendarHeader).getText();
@@ -138,7 +133,6 @@ public class CabBookingPage {
         return selectedDate.contains(day);
     }
 
-    //Select pick-up Time
     public boolean selectPickupTime(String time) {
         common.clickWhenClickable(pickUpTime);
         By optionLocator = By.xpath("//section[contains(@class,'TimeDropdown')]//li[span[text()='" + time + "']]");
@@ -147,20 +141,17 @@ public class CabBookingPage {
         return common.visible(pickUpTime).getText().trim().equals(time);
     }
 
-    // Select rental hours from dropdown
     public void selectRentalHours(String hoursText) {
         By hrsOption = By.xpath("//span[contains(normalize-space(), '" + hoursText + "')]");
         common.clickWhenClickableByLocator(hrsOption);
         Log.info("Rental hours selected: " + hoursText);
     }
 
-    // Click Search
     public void searchCabs() {
         common.clickWhenClickable(searchBtn);
         Log.info("Search button clicked.");
     }
 
-    // Select Cab Type
     public void selectCabType(String cabType) {
         try {
             By popupOkLocator = By.xpath("//span[text()='Okay']");
@@ -175,7 +166,6 @@ public class CabBookingPage {
         Log.info("Cab Type selected: " + cabType);
     }
 
-    // Select Cab Model
     public void selectCabModel(String modelName) {
         By modelLocator = By.xpath("//span[normalize-space(text())='" + modelName + "']");
         WebElement modelCheckbox = common.visible(modelLocator);
@@ -183,7 +173,6 @@ public class CabBookingPage {
         Log.info("Cab Model selected: " + modelName);
     }
 
-    // Select Fuel Type
     public void selectFuelType(String fuelType) {
         By fuelLocator = By.xpath("//span[normalize-space(text())='" + fuelType + "']");
         WebElement fuelCheckbox = common.visible(fuelLocator);
@@ -191,7 +180,6 @@ public class CabBookingPage {
         Log.info("Fuel Type selected: " + fuelType);
     }
 
-    // Print the price of Lowest Cab
     public int printLowestCabPrice() {
         List<WebElement> priceElements = common.allVisibleByLocators(cabPrices);
         List<Integer> prices = new ArrayList<>();
@@ -216,7 +204,6 @@ public class CabBookingPage {
         return lowestPrice;
     }
 
-    //Print Cab Details
     public List<String[]> getCabListData() {
         List<String[]> cabDataList = new ArrayList<>();
         List<WebElement> cards = common.allVisibleByLocators(cabCards);
@@ -234,7 +221,6 @@ public class CabBookingPage {
         return cabDataList;
     }
 
-    // Select Lowest Price Cab
     public void selectLowestCab() {
         List<WebElement> cards = common.allVisibleByLocators(cabCards);
         List<WebElement> prices = common.allVisibleByLocators(cabPrices);
@@ -255,7 +241,6 @@ public class CabBookingPage {
         Log.info("Lowest cab card not found.");
     }
 
-    // Validate the date displayed on UI is same as expected
     public boolean validateDate(String expectedDate) {
         WebElement dateElement = common.visible(cabDate);
         String uiDate = dateElement.getText().trim();
