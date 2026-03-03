@@ -24,10 +24,8 @@ public class TC011_FastestBusDetails extends BaseTest {
         Log.info(fastestBusInfo);
         Log.info("===============================================");
         Assert.assertNotNull(fastestBusInfo, "Bus details should not be null.");
-        Assert.assertFalse(fastestBusInfo.contains("Could not extract"),
-                "Failed to retrieve details from the UI. Check if bus cards loaded.");
-        Assert.assertTrue(fastestBusInfo.contains("h") || fastestBusInfo.contains("m"),
-                "Duration format is unexpected. Expected 'h' or 'm' in: " + fastestBusInfo);
+        Assert.assertFalse(fastestBusInfo.contains("Could not extract"), "Failed to retrieve details from the UI. Check if bus cards loaded.");
+        Assert.assertTrue(fastestBusInfo.contains("h") || fastestBusInfo.contains("m"), "Duration format is unexpected. Expected 'h' or 'm' in: " + fastestBusInfo);
         Log.info("TC012: Fastest bus identification completed successfully.");
     }
 }
