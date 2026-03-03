@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 public class FlightBookingPage {
     private WebDriver driver;
 
-    // Locators
     private By flightSection = By.id("flightSection");
     private By fromCity = By.id("fromCity");
     private By toCity = By.id("toCity");
