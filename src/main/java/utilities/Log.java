@@ -9,3 +9,4 @@ public class Log {
         logger.info(message);
     }
 }
+
