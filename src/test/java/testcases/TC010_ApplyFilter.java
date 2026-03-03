@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import pageObjects.BusBookingPage;
 import utilities.ScreenshotUtility;
 
-public class TC011_ApplyFilter extends BaseTest {
+public class TC010_ApplyFilter extends BaseTest {
     @Test
     public void testACAndSleeperBusFilter() {
         BusBookingPage busPage = new BusBookingPage(driver, wait);

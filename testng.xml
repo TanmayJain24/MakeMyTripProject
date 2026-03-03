@@ -5,22 +5,23 @@
     </listeners>
     <test name="MyTests">
         <classes>
-<!--            <class name="testcases.TC001_VerifyUrlAndTitle"/>-->
-<!--            <class name="testcases.TC002_OpenCabsPage"/>-->
-<!--            <class name="testcases.TC003_SearchCabs"/>-->
-<!--            <class name="testcases.TC004_PrintLowestPrice"/>-->
-<!--            <class name="testcases.TC005_SelectLowestCab"/>-->
-<!--            <class name="testcases.TC006_ValidateDate"/>-->
-<!--            <class name="testcases.TC009_InsurancePlan"/>-->
-<!--            <class name="testcases.TC010_BusCount"/>-->
-<!--            <class name="testcases.TC011_ApplyFilter"/>-->
-<!--            <class name="testcases.TC012_FastestBusDetails"/>-->
-<!--            <class name="testcases.TC013_HighestRating"/>-->
-            <class name="testcases.TC014_OpenGiftCard"/>
-            <class name="testcases.TC015_PrintGiftCards"/>
-            <class name="testcases.TC016_SelectPriceShowsInEnterAmount"/>
-            <class name="testcases.TC017_ValidUserDetails"/>
-            <class name="testcases.TC018_InvalidUserDetails"/>
+            <class name="testcases.TC001_VerifyUrlAndTitle"/>
+            <class name="testcases.TC002_OpenCabsPage"/>
+            <class name="testcases.TC003_SearchCabs"/>
+            <class name="testcases.TC004_PrintCabsAndLowestPrice"/>
+            <class name="testcases.TC005_EnterTravelerDetails"/>
+            <class name="testcases.TC006_ValidateDate"/>
+            <class name="testcases.TC007_ValidateSpecialRequest"/>
+            <class name="testcases.TC008_InsurancePlan"/>
+            <class name="testcases.TC009_BusCount"/>
+            <class name="testcases.TC010_ApplyFilter"/>
+            <class name="testcases.TC011_FastestBusDetails"/>
+            <class name="testcases.TC012_HighestRating"/>
+            <class name="testcases.TC013_OpenGiftCard"/>
+            <class name="testcases.TC014_PrintGiftCards"/>
+            <class name="testcases.TC015_SelectPriceShowsInEnterAmount"/>
+            <class name="testcases.TC016ValidUserDetails"/>
+            <class name="testcases.TC017_InvalidUserDetails"/>
         </classes>
     </test>
 </suite>

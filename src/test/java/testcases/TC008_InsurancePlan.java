@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import pageObjects.InsurancePage;
 import utilities.ScreenshotUtility;
 
-public class TC009_InsurancePlan extends BaseTest {
+public class TC008_InsurancePlan extends BaseTest {
 
     @Test
     public void testInsurancePlanWorkflow() {

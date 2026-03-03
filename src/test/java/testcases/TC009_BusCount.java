@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.BusBookingPage;
 
-public class TC010_BusCount extends BaseTest {
+public class TC009_BusCount extends BaseTest {
 
     @Test
     public void testBusSearchForTomorrow() {

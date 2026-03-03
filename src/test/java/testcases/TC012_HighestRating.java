@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.BusBookingPage;
 
-public class TC013_HighestRating extends BaseTest {
+public class TC012_HighestRating extends BaseTest {
 
     @Test
     public void testTopRatedDescendingFlow() {
