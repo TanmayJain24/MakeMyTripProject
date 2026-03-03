@@ -19,7 +19,7 @@ public class InsurancePage {
     @FindBy(xpath = "//button[@class='TravellingToWidgetstyle__CounterBtn-sc-56hbau-14']")
     private WebElement travellerAddBtn;
 
-    @FindBy(xpath = "//button[@class='LandingButtonstyle__LandingButtonStyle-sc-1ldh0sr-0 glaPGB']")
+    @FindBy(xpath = "//span[contains(text(), 'VIEW PLANS')]")
     private WebElement viewPlansBtn;
 
     @FindBy(xpath = "//div[@data-test-id='InsurancePlansComp-InsurancePlansCompStyle']")

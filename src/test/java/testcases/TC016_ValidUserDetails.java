@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import pageObjects.GiftCardPage;
 import utilities.ConfigReader;
 
-public class TC016ValidUserDetails extends BaseTest {
+public class TC016_ValidUserDetails extends BaseTest {
     @Test
     public void UserDetails() throws InterruptedException {
         GiftCardPage gift = new GiftCardPage(driver, wait);
@@ -16,7 +16,6 @@ public class TC016ValidUserDetails extends BaseTest {
         String mobile = ConfigReader.getProperty("valid.mobile");
         String email  = ConfigReader.getProperty("valid.email");
         gift.userDetails(name, mobile, email);
-
         Assert.assertTrue(name.matches("^[A-Za-z]+\\s[A-Za-z]+$"), "Name should be a valid full name");
         String digitsOnly = mobile.replaceAll("\\D", "");
         Assert.assertEquals(digitsOnly.length(), 10, "Mobile must be exactly 10 digits");

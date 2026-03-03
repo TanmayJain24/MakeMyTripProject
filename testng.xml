@@ -20,7 +20,7 @@
             <class name="testcases.TC013_OpenGiftCard"/>
             <class name="testcases.TC014_PrintGiftCards"/>
             <class name="testcases.TC015_SelectPriceShowsInEnterAmount"/>
-            <class name="testcases.TC016ValidUserDetails"/>
+            <class name="testcases.TC016_ValidUserDetails"/>
             <class name="testcases.TC017_InvalidUserDetails"/>
         </classes>
     </test>

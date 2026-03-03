@@ -13,7 +13,7 @@ public class TC015_SelectPriceShowsInEnterAmount extends BaseTest {
         gift.openGiftCardSection();
         gift.clickGiftCard();
         gift.selectAmount();
-         String expectedGiftAmt = "10000";
+        String expectedGiftAmt = "10000";
         String actual = gift.getEnteredAmount();
         ScreenshotUtility.takeScreenShot(driver, "ShowGiftAmount");
         System.out.println(actual);

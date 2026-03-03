@@ -15,7 +15,6 @@ public class TC014_PrintGiftCards extends BaseTest {
         gift.openGiftCardSection();
         List<String> titles = gift.getGiftCardTitles();
         List<String[]> datatoWrite = new java.util.ArrayList<>();
-
         for(int i=0; i<titles.size(); i++){
             datatoWrite.add(new String[]{
                 String.valueOf(i+1),
@@ -23,9 +22,7 @@ public class TC014_PrintGiftCards extends BaseTest {
             });
         }
         gift.clickGiftCard();
-
         Assert.assertTrue(titles.size() > 0, "No gift card titles found!");
-
         String[] headers = {"Sr. No.", "GiftCardTitles"};
         String filePath = System.getProperty("user.dir") + "/ExcelData/GoibiboReport.xlsx";
         String sheetName = "GiftCardsList";
