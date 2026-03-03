@@ -38,8 +38,31 @@ public class CommonCode {
         getWait().until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
+    public void clickWhenClickableByLocator(By locator) {
+        getWait().until(ExpectedConditions.elementToBeClickable(locator)).click();
+    }
+
     public WebElement waitUntilClickable(WebElement element) {
         return getWait().until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public void waitForInputToHaveText(WebElement input) {
+        getWait().until(driver -> {
+            String value = input.getAttribute("value").trim();
+            return !value.isEmpty();
+        });
+    }
+
+    public void waitForPriceToIncrease(WebElement priceElement, int oldPrice) {
+        getWait().until(driver -> {
+            String currentPriceStr = priceElement.getText();
+            int currentPrice = Integer.parseInt(currentPriceStr.replaceAll("[^0-9]", ""));
+            return currentPrice > oldPrice;
+        });
+    }
+
+    public List<WebElement> allVisibleByLocators(By locator) {
+        return getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
     public List<WebElement> allVisible(List<WebElement> elements) {
@@ -48,7 +71,7 @@ public class CommonCode {
 
     public void pageReady() {
         getWait().until(driver ->
-                ((JavascriptExecutor) driver).executeScript("return document.readyState")
+                ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete")
         );
     }
 
@@ -151,6 +174,11 @@ public class CommonCode {
 
     public void scrollIntoView(WebElement element) {
         js.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public void scrollIntoViewByLocator(By locator) {
+        WebElement element = visible(locator); // use your existing common.visible() to ensure it's present
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
     public void scrollIntoViewCenter(WebElement element) {

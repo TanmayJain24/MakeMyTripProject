@@ -7,7 +7,7 @@ import pageObjects.BusBookingPage;
 import utilities.Log; // Using your Log utility
 import java.time.Duration;
 
-public class TC013_HighestRating extends BaseTest {
+public class TC012_HighestRating extends BaseTest {
 
     @Test
     public void testTopRatedDescendingFlow() {

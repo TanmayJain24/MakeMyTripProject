@@ -1,12 +1,9 @@
 package pageObjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,9 +20,9 @@ import utilities.CommonCode;
 import utilities.Log;
 
 public class CabBookingPage {
-    private WebDriver driver;
-    private WebDriverWait wait;
-    private CommonCode common;
+    WebDriver driver;
+    WebDriverWait wait;
+    CommonCode common;
 
     public CabBookingPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -35,46 +32,52 @@ public class CabBookingPage {
     }
 
     @FindBy(xpath = "//span[text()='Cabs']")
-    private WebElement cabsBtn;
-
-    @FindBy(xpath = "//span[normalize-space()='Outstation One-way']")
-    private WebElement oneWayLocator;
+    WebElement cabsBtn;
 
     @FindBy(xpath = "//input[@id='downshift-1-input']")
-    private WebElement fromCityInput;
+    WebElement fromCityInput;
 
     @FindBy(xpath = "//input[@id='downshift-2-input']")
-    private WebElement toCityInput;
+    WebElement toCityInput;
 
-    @FindBy(xpath = "//div[@class='HomeSearchWidgetstyles__PickupDate-sc-1tz7y2x-6 fvVrBA']//span[@class='HomeSearchWidgetstyles__DateTxt-sc-1tz7y2x-7 dmEwXM']")
-    private WebElement departureLabel;
+    @FindBy(xpath = "//label[contains(text(), 'Pickup Date')]/following-sibling::span")
+    WebElement pickUpLabel;
 
-    @FindBy(xpath = "//p[@class='dcalendarstyles__MonthNamePara-sc-s6w5s3-3 kvJFRU']")
-    private WebElement calendarHeader;
+    @FindBy(xpath = "//div[@data-testid='calendarLeftArrowBtn']/following-sibling::p")
+    WebElement calendarHeader;
 
-    @FindBy(xpath = "//div[@class='dcalendarstyles__MonthChangeRightArrowDiv-sc-s6w5s3-16 cRfdOs']")
-    private WebElement nextMonthBtn;
+    @FindBy(xpath = "//div[@data-testid='calendarRightArrowBtn']")
+    WebElement nextMonthBtn;
 
-    @FindBy(xpath = "//div[@class='HomeSearchWidgetstyles__PickupTime-sc-1tz7y2x-8 fqIfzQ']/span")
-    private WebElement pickUpTime;
+    @FindBy(xpath = "//label[contains(text(), 'Pickup Time')]/following-sibling::span")
+    WebElement pickUpTime;
 
-    @FindBy(xpath = "//section[@class='TimeDropdownstyles__TimeDropdown-sc-d6504d-0 fREELa']/ul/li")
-    private List<WebElement> pickupDropdown;
+    @FindBy(xpath = "//button[contains(text(), 'SEARCH CABS')]")
+    WebElement searchBtn;
 
-    @FindBy(xpath = "//button[normalize-space()='SEARCH CABS']")
-    private WebElement searchBtn;
+    @FindBy(xpath = "//span[contains(@class, 'journeyduration_journeyDurationText')]")
+    WebElement cabDate;
 
-    @FindBy(xpath = "//span[@class='cabDetailsCard_price__SHN6W']")
-    private List<WebElement> cabPrices;
+    @FindBy(xpath = "//input[@label='FULL NAME']")
+    WebElement travelerNameField;
 
-    @FindBy(xpath = "//div[@class='cabDetailsCard_cabDetails__X3Adv']")
-    private List<WebElement> cabCards;
+    @FindBy(xpath = "//div[@role='button']")
+    WebElement travelerGenderField;
 
-    @FindBy(xpath = "//span[normalize-space(text())='SELECT CAB']")
-    private List<WebElement> selectBtns;
+    @FindBy(xpath = "//input[@type='number']")
+    WebElement travelerMobileField;
 
-    @FindBy(xpath = "//span[@class='sc-fWnslK sc-kpOvIu dsTpEE journeyduration_journeyDurationText__Q4fcc']")
-    private WebElement cabDate;
+    @FindBy(xpath = "//input[@type='email']")
+    WebElement travelerEmailField;
+
+    @FindBy(xpath = "//span[text()='Full Pay']/following::span[@class='sc-fWnslK sc-kpOvIu bxZKYh']")
+    WebElement priceTag;
+
+    By cabCards = By.xpath("//div[contains(@class, 'cabDetailsCard_cabDetails_')]");
+    By cabNames = By.xpath("//span[@data-testid='CAB_TITLE']");
+    By cabPrices = By.xpath("//span[contains(@class, 'cabDetailsCard_price')]");
+    By cabRating = By.xpath("//span[@class='rating_rating__diqPU']");
+    By selectBtns = By.xpath("//span[contains(text(), 'SELECT CAB')]");
 
     // Navigate to Cabs page
     public void openCabsPage() {
@@ -83,9 +86,11 @@ public class CabBookingPage {
     }
 
     // Click One Way Outstation Cab option
-    public boolean clickOneWayOutstation() {
+    public boolean clickCabServices(String cabService) {
+        By serviceType = By.xpath("//span[normalize-space()='" + cabService + "']");
         try {
-            common.clickWhenClickable(oneWayLocator);
+            common.safeClick(serviceType);
+            Log.info("Trip Type Selected");
             return true;
         } catch (Exception e) {
             return false;
@@ -93,62 +98,60 @@ public class CabBookingPage {
     }
 
     // Select From city with dropdown
-    public boolean selectFromCity(String from) {
+    public boolean selectPickupLocation(String from) {
         common.clickWhenClickable(fromCityInput);
         common.enterText(fromCityInput, from);
-        By fromOptionLocator = By.xpath("//p[contains(text(),'" + from + "')]");
-        WebElement fromOption = wait.until(ExpectedConditions.visibilityOfElementLocated(fromOptionLocator));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", fromOption);
+        By fromOptionLocator = By.xpath("//p[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" + from + "')]");
+        WebElement fromOption = common.visible(fromOptionLocator);
+        common.safeClickToWebElement(fromOption);
         Log.info("Selected From city: " + from);
-        wait.until(ExpectedConditions.textToBePresentInElementValue(fromCityInput, from));
-        String fromCityText = common.waitUntilClickable(fromCityInput).getAttribute("value");
+        common.waitForInputToHaveText(fromCityInput);
+        String fromCityText = common.waitUntilClickable(fromCityInput).getAttribute("value").toLowerCase();
         return fromCityText.contains(from);
     }
 
     // Select To city with dropdown
-    public boolean selectToCity(String to) {
+    public boolean selectDropLocation(String to) {
         common.clickWhenClickable(toCityInput);
         common.enterText(toCityInput, to);
-        By fromOptionLocator = By.xpath("//p[contains(text(),'" + to + "')]");
-        WebElement fromOption = wait.until(ExpectedConditions.visibilityOfElementLocated(fromOptionLocator));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", fromOption);
+        By toOptionLocator = By.xpath("//p[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" + to + "')]");
+        WebElement toOption = common.visible(toOptionLocator);
+        common.safeClickToWebElement(toOption);
         Log.info("Selected To city: " + to);
-        wait.until(ExpectedConditions.textToBePresentInElementValue(toCityInput, to));
-        String toCityText = common.waitUntilClickable(toCityInput).getAttribute("value");
+        common.waitForInputToHaveText(toCityInput);
+        String toCityText = common.waitUntilClickable(toCityInput).getAttribute("value").toLowerCase();
         return toCityText.contains(to);
     }
 
     // Select the Departure date
-    public boolean selectDepartureDate(String day, String targetMonthYear) {
-        common.clickWhenClickable(departureLabel);
-        String currentMonthYear = wait.until(ExpectedConditions.visibilityOf(calendarHeader)).getText();
+    public boolean selectPickUpDate(String day, String targetMonthYear) {
+        common.clickWhenClickable(pickUpLabel);
+        String currentMonthYear = common.visible(calendarHeader).getText();
         while (!currentMonthYear.equalsIgnoreCase(targetMonthYear)) {
             common.clickWhenClickable(nextMonthBtn);
-            currentMonthYear = wait.until(ExpectedConditions.visibilityOf(calendarHeader)).getText();
+            currentMonthYear = common.visible(calendarHeader).getText();
         }
         By dateLocator = By.xpath("//ul[contains(@class,'DateWrapDiv')]//span[normalize-space(text())='" + day + "']");
         common.safeClick(dateLocator);
         Log.info("Selected departure date: " + day + " " + targetMonthYear);
-        String selectedDate = wait.until(ExpectedConditions.visibilityOf(departureLabel)).getText();
+        String selectedDate = common.visible(pickUpLabel).getText();
         return selectedDate.contains(day);
     }
 
     //Select pick-up Time
     public boolean selectPickupTime(String time) {
-        // Locate all the <li> elements inside the timepicker dropdown
         common.clickWhenClickable(pickUpTime);
-        List<WebElement> timeOptions = wait.until(ExpectedConditions.visibilityOfAllElements(pickupDropdown));
-        for (WebElement option : timeOptions) {
-            String timeText = option.getText().trim();
-            if (timeText.equalsIgnoreCase(time)) {
-                option.click();
-                Log.info("Selected pickup time: " + time);
-                break;
-            }
-        }
-        return wait.until(ExpectedConditions.visibilityOf(pickUpTime)).getText().trim().equals(time);
+        By optionLocator = By.xpath("//section[contains(@class,'TimeDropdown')]//li[span[text()='" + time + "']]");
+        WebElement option = common.visible(optionLocator);
+        common.clickWhenClickable(option);
+        return common.visible(pickUpTime).getText().trim().equals(time);
+    }
+
+    // Select rental hours from dropdown
+    public void selectRentalHours(String hoursText) {
+        By hrsOption = By.xpath("//span[contains(normalize-space(), '" + hoursText + "')]");
+        common.clickWhenClickableByLocator(hrsOption);
+        Log.info("Rental hours selected: " + hoursText);
     }
 
     // Click Search
@@ -158,18 +161,39 @@ public class CabBookingPage {
     }
 
     // Select Cab Type
-    public boolean selectCabType(String cabType) {
-        WebElement cabTypeSelect = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='" + cabType + "']")));
-        cabTypeSelect.click();
-        Log.info("Cab Type selected");
-        WebElement cabTypeCheckbox = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@role='checkbox'][.//span[text()='" + cabType + "']]")));
-        return "true".equalsIgnoreCase(cabTypeCheckbox.getAttribute("aria-checked"));
+    public void selectCabType(String cabType) {
+        try {
+            By popupOkLocator = By.xpath("//span[text()='Okay']");
+            WebElement popupOkButton = common.visible(popupOkLocator);
+            popupOkButton.click();
+            Log.info("Popup handled by clicking 'Okay'");
+        } catch (Exception e) {
+            Log.info("No popup appeared after selecting cab type");
+        }
+        By cabTypeLocator = By.xpath("//span[normalize-space(text())='" + cabType + "']");
+        common.clickWhenClickableByLocator(cabTypeLocator);
+        Log.info("Cab Type selected: " + cabType);
+    }
+
+    // Select Cab Model
+    public void selectCabModel(String modelName) {
+        By modelLocator = By.xpath("//span[normalize-space(text())='" + modelName + "']");
+        WebElement modelCheckbox = common.visible(modelLocator);
+        common.clickWhenClickable(modelCheckbox);
+        Log.info("Cab Model selected: " + modelName);
+    }
+
+    // Select Fuel Type
+    public void selectFuelType(String fuelType) {
+        By fuelLocator = By.xpath("//span[normalize-space(text())='" + fuelType + "']");
+        WebElement fuelCheckbox = common.visible(fuelLocator);
+        common.clickWhenClickable(fuelCheckbox);
+        Log.info("Fuel Type selected: " + fuelType);
     }
 
     // Print the price of Lowest Cab
     public int printLowestCabPrice() {
-        List<WebElement> priceElements = wait.until(ExpectedConditions.visibilityOfAllElements(cabPrices));
-
+        List<WebElement> priceElements = common.allVisibleByLocators(cabPrices);
         List<Integer> prices = new ArrayList<>();
         Log.info("Available prices: ");
         for (int i = 0; i < priceElements.size(); i++) {
@@ -184,7 +208,7 @@ public class CabBookingPage {
         }
         int lowestPrice = 0;
         if (!prices.isEmpty()) {
-            lowestPrice = Collections.min(prices); // store lowest price
+            lowestPrice = Collections.min(prices);
             Log.info("Lowest cab price: " + lowestPrice);
         } else {
             Log.info("No cab prices found.");
@@ -192,19 +216,37 @@ public class CabBookingPage {
         return lowestPrice;
     }
 
+    //Print Cab Details
+    public List<String[]> getCabListData() {
+        List<String[]> cabDataList = new ArrayList<>();
+        List<WebElement> cards = common.allVisibleByLocators(cabCards);
+        List<WebElement> names = common.allVisibleByLocators(cabNames);
+        List<WebElement> prices = common.allVisibleByLocators(cabPrices);
+        List<WebElement> ratings = common.allVisibleByLocators(cabRating);
+        common.allVisibleByLocators(cabCards);
+        for (int i = 0; i < cards.size(); i++) {
+            String name = names.get(i).getText();
+            String priceText = prices.get(i).getText().replaceAll("[^0-9]", "");
+            String rating = ratings.get(i).getText();
+            Log.info("Cab " + (i + 1) + ": Name = " + name + " | Price = " + priceText + " | Rating = " + rating);
+            cabDataList.add(new String[]{name, priceText, rating});
+        }
+        return cabDataList;
+    }
+
     // Select Lowest Price Cab
     public void selectLowestCab() {
-        // Wait until all cab cards are visible
-        List<WebElement> cards = wait.until(ExpectedConditions.visibilityOfAllElements(cabCards));
+        List<WebElement> cards = common.allVisibleByLocators(cabCards);
+        List<WebElement> prices = common.allVisibleByLocators(cabPrices);
+        List<WebElement> buttons = common.allVisibleByLocators(selectBtns);
         int lowestPrice = printLowestCabPrice();
-        for (int i = 0; i < cabCards.size(); i++) {
-            String priceText = cabPrices.get(i).getText().replaceAll("[^0-9]", "");
+        for (int i = 0; i < cards.size(); i++) {
+            String priceText = prices.get(i).getText().replaceAll("[^0-9]", "");
             if (!priceText.isEmpty()) {
                 int price = Integer.parseInt(priceText);
                 if (price == lowestPrice) {
-                    WebElement selectBtn = selectBtns.get(i);
-                    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", selectBtn);
-                    wait.until(ExpectedConditions.elementToBeClickable(selectBtn)).click();
+                    WebElement selectBtn = buttons.get(i);
+                    common.safeClickToWebElement(selectBtn);
                     Log.info("Clicked Select Cab for price: " + lowestPrice);
                     return;
                 }
@@ -215,23 +257,41 @@ public class CabBookingPage {
 
     // Validate the date displayed on UI is same as expected
     public boolean validateDate(String expectedDate) {
-        WebElement dateElement = wait.until(ExpectedConditions.visibilityOf(cabDate));
+        WebElement dateElement = common.visible(cabDate);
         String uiDate = dateElement.getText().trim();
-
-        // Formatter for UI string
         DateTimeFormatter uiFormatter = new DateTimeFormatterBuilder()
                 .appendPattern("d MMM, h:mm a")
                 .parseDefaulting(ChronoField.YEAR, 2026)
                 .toFormatter(Locale.ENGLISH);
-
-        // Formatter for expected string
         DateTimeFormatter expectedFormatter = DateTimeFormatter.ofPattern("EEE MMM d yyyy", Locale.ENGLISH);
-
-        // Parse both
         LocalDateTime uiParsed = LocalDateTime.parse(uiDate, uiFormatter);
         LocalDate expectedParsed = LocalDate.parse(expectedDate, expectedFormatter);
         boolean result = uiParsed.toLocalDate().equals(expectedParsed);
         Log.info("Validation " + (result ? "PASSED" : "FAILED") + " → Expected: " + expectedParsed + " | Actual: " + uiParsed.toLocalDate());
         return result;
+    }
+
+    public void enterTravelerDetails(String fullName, String optionText, String mobileNumber, String email) {
+        common.scrollClearType(travelerNameField, fullName);
+        common.clickWhenClickable(travelerGenderField);
+        By optionLocator = By.xpath("//span[contains(text(),'" + optionText + "')]");
+        common.safeClick(optionLocator);
+        common.scrollClearType(travelerMobileField, mobileNumber);
+        common.scrollClearType(travelerEmailField, email);
+        System.out.println("Traveler details entered: " + fullName + " | " + mobileNumber + " | " + email);
+    }
+
+    public boolean selectSpecialRequestAndValidatePrice(String requestName) {
+        By specialRequest = By.xpath("//span[text()='" + requestName + "']");
+        String priceBeforeStr = common.visible(priceTag).getText();
+        int priceBefore = Integer.parseInt(priceBeforeStr.replaceAll("[^0-9]", ""));
+        common.safeClick(specialRequest);
+        Log.info("Selected special request: " + requestName);
+        common.waitForPriceToIncrease(priceTag, priceBefore);
+        String priceAfterStr = common.visible(priceTag).getText();
+        int priceAfter = Integer.parseInt(priceAfterStr.replaceAll("[^0-9]", ""));
+        Log.info("Price before " + requestName + ": " + priceBefore);
+        Log.info("Price after " + requestName + ": " + priceAfter);
+        return priceAfter > priceBefore;
     }
 }

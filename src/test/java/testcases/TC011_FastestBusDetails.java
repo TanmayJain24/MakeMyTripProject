@@ -7,8 +7,7 @@ import pageObjects.BusBookingPage;
 import utilities.Log;
 import java.time.Duration;
 
-public class TC012_FastestBusDetails extends BaseTest {
-
+public class TC011_FastestBusDetails extends BaseTest {
     @Test
     public void testIdentifyFastestBus() {
         Log.info("Starting TC012: Identify Fastest Bus Workflow");
