@@ -3231,3 +3231,60 @@
 2026-03-04 10:23:52 INFO  utilities.Log - Selected To city: Mumbai
 2026-03-04 10:24:10 INFO  utilities.Log - Applied filter for: Air India
 2026-03-04 10:24:10 INFO  utilities.Log - Successfully verified Air India specific filtering..!
+2026-03-04 10:34:05 INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\2464124\AppData\Local\JetBrains\IdeaIC2025.2\temp-testng-customsuite.xml
+
+2026-03-04 10:34:11 INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\2464124\AppData\Local\JetBrains\IdeaIC2025.2\temp-testng-customsuite.xml
+
+2026-03-04 10:34:18 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:34:20 INFO  utilities.Log - Selected From city: Chennai
+2026-03-04 10:34:20 INFO  utilities.Log - Selected To city: Mumbai
+2026-03-04 10:34:23 INFO  utilities.Log - Selected Class: First Class
+2026-03-04 10:34:38 INFO  utilities.Log - 
+===========================================================================
+2026-03-04 10:34:38 INFO  utilities.Log - CLEANED FLIGHT RESULTS FOR: FIRST CLASS
+2026-03-04 10:34:38 INFO  utilities.Log - ===========================================================================
+2026-03-04 10:34:38 INFO  utilities.Log - AIRLINE            | FROM         | TO           | TIME       | PRICE     
+2026-03-04 10:34:38 INFO  utilities.Log - ---------------------------------------------------------------------------
+2026-03-04 10:34:38 INFO  utilities.Log - Air India          | Chennai      | Mumbai       | 06:15      | Rs. 5,524 
+2026-03-04 10:34:38 INFO  utilities.Log - Air India          | Chennai      | Mumbai       | 07:15      | Rs. 5,524 
+2026-03-04 10:34:39 INFO  utilities.Log - Air India          | Chennai      | Mumbai       | 09:35      | Rs. 5,524 
+2026-03-04 10:34:42 INFO  utilities.Log - Air India          | Chennai      | Mumbai       | 11:40      | Rs. 5,524 
+2026-03-04 10:34:42 INFO  utilities.Log - Air India          | Chennai      | Mumbai       | 15:45      | Rs. 5,524 
+2026-03-04 10:34:42 INFO  utilities.Log - Air India          | Chennai      | Mumbai       | 18:00      | Rs. 5,524 
+2026-03-04 10:34:42 INFO  utilities.Log - Air India          | Chennai      | Mumbai       | 21:10      | Rs. 5,524 
+2026-03-04 10:34:42 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 06:10      | Rs. 5,918 
+2026-03-04 10:34:45 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 04:55      | Rs. 5,925 
+2026-03-04 10:34:45 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 07:05      | Rs. 5,925 
+2026-03-04 10:34:45 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 09:10      | Rs. 5,925 
+2026-03-04 10:34:45 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 11:00      | Rs. 5,925 
+2026-03-04 10:34:45 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 12:45      | Rs. 5,925 
+2026-03-04 10:34:48 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 15:00      | Rs. 5,925 
+2026-03-04 10:34:48 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 16:40      | Rs. 5,925 
+2026-03-04 10:34:49 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 18:20      | Rs. 5,925 
+2026-03-04 10:34:49 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 20:10      | Rs. 5,925 
+2026-03-04 10:34:49 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 22:30      | Rs. 5,925 
+2026-03-04 10:34:49 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 07:00      | Rs. 7,938 
+2026-03-04 10:34:52 INFO  utilities.Log - Akasa Air          | Chennai      | Mumbai       | 13:35      | Rs. 16,091
+2026-03-04 10:34:58 INFO  utilities.Log - ---------------------------------------------------------------------------
+2026-03-04 10:34:58 INFO  utilities.Log - Total Unique Flights Found: 20
+2026-03-04 10:35:00 INFO  utilities.Log - Excel Report generated with 20 flights.
+2026-03-04 10:35:32 INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\2464124\AppData\Local\JetBrains\IdeaIC2025.2\temp-testng-customsuite.xml
+
+2026-03-04 10:35:38 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:35:40 INFO  utilities.Log - Selected From city: Chennai
+2026-03-04 10:35:40 INFO  utilities.Log - Selected To city: Mumbai
+2026-03-04 10:35:59 INFO  utilities.Log - 
+===========================================================================
+2026-03-04 10:35:59 INFO  utilities.Log - CLEANED FLIGHT RESULTS FOR: LATE NIGHT WINDOW
+2026-03-04 10:35:59 INFO  utilities.Log - ===========================================================================
+2026-03-04 10:35:59 INFO  utilities.Log - AIRLINE            | FROM         | TO           | TIME       | PRICE     
+2026-03-04 10:35:59 INFO  utilities.Log - ---------------------------------------------------------------------------
+2026-03-04 10:35:59 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 20:10      | Rs. 8,791 
+2026-03-04 10:35:59 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 21:10      | Rs. 8,796 
+2026-03-04 10:36:02 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 19:05      | Rs. 9,120 
+2026-03-04 10:36:08 INFO  utilities.Log - ---------------------------------------------------------------------------
+2026-03-04 10:36:08 INFO  utilities.Log - Total Unique Flights Found: 3
+2026-03-04 10:36:09 INFO  utilities.Log - Excel Report generated for TC053 with 3 filtered flights.

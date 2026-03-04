@@ -49,13 +49,11 @@ public class BaseTest {
 
     public void handleLoginPopup() {
         try {
-            // Wait up to 5 seconds for popup close button
             By closeBtn = By.xpath("//span[@role='presentation']");
             WebElement popupClose = wait.until(ExpectedConditions.visibilityOfElementLocated(closeBtn));
             popupClose.click();
             Log.info("Login popup closed.");
         } catch (Exception e) {
-            // Popup not present within timeout
             Log.info("No login popup displayed.");
         }
     }
