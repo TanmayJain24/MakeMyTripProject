@@ -78,6 +78,9 @@ public class CabBookingPage {
     By cabPrices = By.xpath("//span[contains(@class, 'cabDetailsCard_price')]");
     By cabRating = By.xpath("//span[@class='rating_rating__diqPU']");
     By selectBtns = By.xpath("//span[contains(text(), 'SELECT CAB')]");
+    By first = By.xpath("//span[normalize-space()='Hatchback']");
+    By second = By.xpath("//span[normalize-space()='Sedan']")  ;
+    By third = By.xpath("//span[normalize-space()='SUV']");
 
     public void openCabsPage() {
         common.clickWhenClickable(cabsBtn);
@@ -241,6 +244,24 @@ public class CabBookingPage {
         Log.info("Lowest cab card not found.");
     }
 
+//Sandesh
+    public List<String> getAvailableCarTypes() throws InterruptedException {
+        WebElement firstEle = wait.until(ExpectedConditions.visibilityOfElementLocated(first));
+
+        WebElement secEle = wait.until(ExpectedConditions.visibilityOfElementLocated(second));
+
+        WebElement thirdEle = wait.until(ExpectedConditions.visibilityOfElementLocated(third));
+
+        List<String> eleList = new ArrayList<>();
+        eleList.add(firstEle.getText());
+        eleList.add(secEle.getText());
+        eleList.add(thirdEle.getText());
+
+        return eleList;
+
+    }
+
+    // Validate the date displayed on UI is same as expected
     public boolean validateDate(String expectedDate) {
         WebElement dateElement = common.visible(cabDate);
         String uiDate = dateElement.getText().trim();

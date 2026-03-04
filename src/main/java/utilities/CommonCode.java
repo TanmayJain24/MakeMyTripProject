@@ -172,6 +172,10 @@ public class CommonCode {
         js.executeScript("arguments[0].click();",element);
     }
 
+    public void clickAtCoordinates(int x, int y) {
+        js.executeScript("document.elementFromPoint(arguments[0], arguments[1]).click();", x, y);
+    }
+
     public void scrollIntoView(WebElement element) {
         js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
@@ -185,6 +189,9 @@ public class CommonCode {
         js.executeScript("arguments[0].scrollIntoView({block:'center', inline:'nearest'});", element);
     }
 
+    public void scrollByPixels(int pixels) {
+        js.executeScript("window.scrollBy(0, arguments[0]);", pixels);
+    }
     public void scrollToBottom() {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
     }
@@ -250,7 +257,7 @@ public class CommonCode {
         return texts;
     }
 
-    private void sleep(long ms) {
+    void sleep(long ms) {
         try { Thread.sleep(ms); } catch (InterruptedException ignored) {}
     }
 }
