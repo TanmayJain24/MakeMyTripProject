@@ -9,7 +9,7 @@ import utilities.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TC051_Cheapest_Flight_Search_Results extends BaseTest {
+public class TC019_Cheapest_Flight_Search_Results extends BaseTest {
     @Test
     public void search_flights_results() {
         FlightBookingPage fp = new FlightBookingPage(driver, wait);

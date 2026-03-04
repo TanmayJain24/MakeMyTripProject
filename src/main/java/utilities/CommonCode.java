@@ -180,11 +180,6 @@ public class CommonCode {
         js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    public void scrollIntoViewByLocator(By locator) {
-        WebElement element = visible(locator); // use your existing common.visible() to ensure it's present
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-    }
-
     public void scrollIntoViewCenter(WebElement element) {
         js.executeScript("arguments[0].scrollIntoView({block:'center', inline:'nearest'});", element);
     }

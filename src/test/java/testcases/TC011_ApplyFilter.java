@@ -8,7 +8,7 @@ import utilities.ScreenshotUtility;
 import utilities.Log; // Using your Log utility
 import java.time.Duration;
 
-public class TC010_ApplyFilter extends BaseTest {
+public class TC011_ApplyFilter extends BaseTest {
     @Test
     public void testACAndSleeperBusFilter() {
         Log.info("Starting TC011: Apply AC and Sleeper Filter Test");

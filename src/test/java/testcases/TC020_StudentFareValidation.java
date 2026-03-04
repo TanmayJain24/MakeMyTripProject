@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import pageObjects.FlightBookingPage;
 import utilities.ScreenshotUtility;
 
-public class TC052_StudentFareValidation extends BaseTest {
+public class TC020_StudentFareValidation extends BaseTest {
     @Test
     public void validateStudentFareSelection() {
         FlightBookingPage fp = new FlightBookingPage(driver, wait);

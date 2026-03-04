@@ -7,7 +7,7 @@ import pageObjects.GiftCardPage;
 import utilities.ScreenshotUtility;
 import utilities.ConfigReader;
 
-public class TC017_InvalidUserDetails extends BaseTest {
+public class TC018_InvalidUserDetails extends BaseTest {
     @Test
     public void invalidUserDetailsTest() throws InterruptedException {
         GiftCardPage gift = new GiftCardPage(driver, wait);

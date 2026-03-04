@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import pageObjects.FlightBookingPage;
 import utilities.ScreenshotUtility;
 
-public class TC054_ApplyNonStop extends BaseTest {
+public class TC022_ApplyNonStop extends BaseTest {
     @Test
     public void NonStopFilter() {
         FlightBookingPage pg = new FlightBookingPage(driver,wait);

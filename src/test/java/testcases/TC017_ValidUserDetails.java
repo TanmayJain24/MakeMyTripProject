@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import pageObjects.GiftCardPage;
 import utilities.ConfigReader;
 
-public class TC016_ValidUserDetails extends BaseTest {
+public class TC017_ValidUserDetails extends BaseTest {
     @Test
     public void UserDetails() throws InterruptedException {
         GiftCardPage gift = new GiftCardPage(driver, wait);

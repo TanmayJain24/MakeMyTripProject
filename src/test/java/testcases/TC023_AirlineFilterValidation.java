@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import pageObjects.FlightBookingPage;
 import utilities.Log;
 
-public class TC055_AirlineFilterValidation extends BaseTest {
+public class TC023_AirlineFilterValidation extends BaseTest {
     @Test
     public void verifyAirIndiaFilter() {
         FlightBookingPage fp = new FlightBookingPage(driver, wait);

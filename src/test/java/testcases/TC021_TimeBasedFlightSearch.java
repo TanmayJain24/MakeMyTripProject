@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import utilities.ScreenshotUtility;
 
-public class TC053_TimeBasedFlightSearch extends BaseTest {
+public class TC021_TimeBasedFlightSearch extends BaseTest {
     @Test
     public void verifyTimeBasedFilters() {
         FlightBookingPage fp = new FlightBookingPage(driver, wait);

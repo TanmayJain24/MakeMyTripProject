@@ -7,7 +7,7 @@ import utilities.ScreenshotUtility;
 import utilities.Log; // Using your Log utility
 import java.time.Duration;
 
-public class TC008_InsurancePlan extends BaseTest {
+public class TC009_InsurancePlan extends BaseTest {
     @Test
     public void testInsurancePlanWorkflow() {
         Log.info("Starting Insurance Plan Workflow Test Case.");

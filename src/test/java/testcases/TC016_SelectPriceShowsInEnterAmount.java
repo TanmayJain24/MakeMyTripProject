@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import pageObjects.GiftCardPage;
 import utilities.ScreenshotUtility;
 
-public class TC015_SelectPriceShowsInEnterAmount extends BaseTest {
+public class TC016_SelectPriceShowsInEnterAmount extends BaseTest {
     @Test
     public void selectPriceShow() throws InterruptedException {
         GiftCardPage gift = new GiftCardPage(driver , wait);

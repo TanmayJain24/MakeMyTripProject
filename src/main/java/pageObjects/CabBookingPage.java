@@ -244,24 +244,21 @@ public class CabBookingPage {
         Log.info("Lowest cab card not found.");
     }
 
-//Sandesh
-    public List<String> getAvailableCarTypes() throws InterruptedException {
-        WebElement firstEle = wait.until(ExpectedConditions.visibilityOfElementLocated(first));
-
-        WebElement secEle = wait.until(ExpectedConditions.visibilityOfElementLocated(second));
-
-        WebElement thirdEle = wait.until(ExpectedConditions.visibilityOfElementLocated(third));
-
+    public List<String> getAvailableCarTypes() {
+        WebElement firstEle = common.visible(first);
+        WebElement secEle = common.visible(second);
+        WebElement thirdEle = common.visible(third);
         List<String> eleList = new ArrayList<>();
         eleList.add(firstEle.getText());
         eleList.add(secEle.getText());
         eleList.add(thirdEle.getText());
-
+        Log.info("Available Car Types : ");
+        for(String cabType: eleList) {
+            System.out.println(cabType);
+        }
         return eleList;
-
     }
 
-    // Validate the date displayed on UI is same as expected
     public boolean validateDate(String expectedDate) {
         WebElement dateElement = common.visible(cabDate);
         String uiDate = dateElement.getText().trim();

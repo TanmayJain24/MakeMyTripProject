@@ -7,7 +7,7 @@ import pageObjects.BusBookingPage;
 import utilities.Log; // Using your custom Log class
 import java.time.Duration;
 
-public class TC009_BusCount extends BaseTest {
+public class TC010_BusCount extends BaseTest {
     @Test
     public void testBusSearchForTomorrow() {
         Log.info("Starting TC010: Bus Search for Tomorrow Workflow");

@@ -7,7 +7,7 @@ import pageObjects.GiftCardPage;
 import utilities.ExcelUtil;
 import java.util.List;
 
-public class TC014_PrintGiftCards extends BaseTest {
+public class TC015_PrintGiftCards extends BaseTest {
 
     @Test
     public void printCards() {
