@@ -187,28 +187,9 @@ public class CommonCode {
     public void scrollByPixels(int pixels) {
         js.executeScript("window.scrollBy(0, arguments[0]);", pixels);
     }
+
     public void scrollToBottom() {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-    }
-
-    public void scrollToTop() {
-        js.executeScript("window.scrollTo(0, 0);");
-    }
-
-    public void highlightElement(WebElement element) {
-        js.executeScript("arguments[0].style.border='2px solid red'", element);
-    }
-
-    public String getTitleByJS() {
-        return (String) js.executeScript("return document.title;");
-    }
-
-    public void refreshByJS() {
-        js.executeScript("history.go(0)");
-    }
-
-    public void jsClick(WebElement element) {
-        clickByJS(element);
     }
 
     public String safeGetAttribute(WebElement element, String name) {
@@ -217,15 +198,6 @@ public class CommonCode {
         } catch (StaleElementReferenceException e) {
             return "";
         }
-    }
-
-    public String waitValueToChange(WebElement element) {
-        String before = safeGetAttribute(element, "value");
-        getWait().until(d -> {
-            String now = safeGetAttribute(element, "value");
-            return now != null && !now.equals(before);
-        });
-        return safeGetAttribute(element, "value");
     }
 
     public String waitValueToChange(WebElement element, Duration customTimeout) {
@@ -244,7 +216,6 @@ public class CommonCode {
             try {
                 texts.add(elements.get(i).getText().trim());
             } catch (StaleElementReferenceException e) {
-                // wait for staleness, then re-read fresh reference
                 getWait().until(ExpectedConditions.stalenessOf(elements.get(i)));
                 texts.add(elements.get(i).getText().trim());
             }
@@ -252,7 +223,7 @@ public class CommonCode {
         return texts;
     }
 
-    void sleep(long ms) {
-        try { Thread.sleep(ms); } catch (InterruptedException ignored) {}
+    public void waitFor(long ms) {
+        try { Thread.sleep(ms); } catch (InterruptedException e) { e.printStackTrace(); }
     }
 }

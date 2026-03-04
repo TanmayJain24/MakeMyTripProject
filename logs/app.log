@@ -3015,3 +3015,219 @@
 2026-03-04 09:49:34 INFO  utilities.Log - Selected To city: Mumbai
 2026-03-04 09:49:52 INFO  utilities.Log - Applied filter for: Air India
 2026-03-04 09:49:52 INFO  utilities.Log - Successfully verified Air India specific filtering..!
+2026-03-04 10:15:17 INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\2464124\IdeaProjects\FinalProject\testng.xml
+
+2026-03-04 10:15:26 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:15:32 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:15:38 INFO  utilities.Log - Navigated to Cabs page.
+2026-03-04 10:15:45 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:15:47 INFO  utilities.Log - Navigated to Cabs page.
+2026-03-04 10:15:48 INFO  utilities.Log - Trip Type Selected
+2026-03-04 10:15:49 INFO  utilities.Log - Selected From city: delhi cantt
+2026-03-04 10:15:51 INFO  utilities.Log - Selected To city: manali, himachal pradesh
+2026-03-04 10:15:52 INFO  utilities.Log - Selected departure date: 26 March 2026
+2026-03-04 10:15:57 INFO  utilities.Log - Search button clicked.
+2026-03-04 10:15:58 INFO  utilities.Log - Cab 1: Name = WagonR, Swift | Price = 6301 | Rating = 5/5
+2026-03-04 10:15:58 INFO  utilities.Log - Cab 2: Name = Dzire, Etios | Price = 6435 | Rating = 4.1/5
+2026-03-04 10:15:58 INFO  utilities.Log - Cab 3: Name = WagonR, Swift | Price = 7381 | Rating = 5/5
+2026-03-04 10:15:58 INFO  utilities.Log - Cab 4: Name = Dzire, Etios | Price = 7515 | Rating = 4.1/5
+2026-03-04 10:15:58 INFO  utilities.Log - Cab 5: Name = Xylo, Ertiga | Price = 8752 | Rating = 4.3/5
+2026-03-04 10:15:58 INFO  utilities.Log - Cab 6: Name = Xylo, Ertiga | Price = 9940 | Rating = 4.3/5
+2026-03-04 10:15:58 INFO  utilities.Log - Cab 7: Name = Toyota Innova | Price = 13550 | Rating = NEW
+2026-03-04 10:15:58 INFO  utilities.Log - Cab 8: Name = Innova Crysta | Price = 14050 | Rating = 3.5/5
+2026-03-04 10:16:06 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:16:10 INFO  utilities.Log - Navigated to Cabs page.
+2026-03-04 10:16:11 INFO  utilities.Log - Trip Type Selected
+2026-03-04 10:16:12 INFO  utilities.Log - Selected From city: mumbai, maharashtra
+2026-03-04 10:16:14 INFO  utilities.Log - Selected To city: manali, himachal pradesh
+2026-03-04 10:16:15 INFO  utilities.Log - Selected departure date: 26 March 2026
+2026-03-04 10:16:20 INFO  utilities.Log - Search button clicked.
+2026-03-04 10:16:41 INFO  utilities.Log - No popup appeared after selecting cab type
+2026-03-04 10:16:41 INFO  utilities.Log - Cab Type selected: SUV
+2026-03-04 10:16:41 INFO  utilities.Log - Available prices: 
+2026-03-04 10:16:41 INFO  utilities.Log - Lowest cab price: 37965
+2026-03-04 10:16:41 INFO  utilities.Log - Cab 1: Name = Xylo, Ertiga | Price = 37965 | Rating = 4.1/5
+2026-03-04 10:16:41 INFO  utilities.Log - Cab 2: Name = Xylo, Ertiga | Price = 52742 | Rating = 4.2/5
+2026-03-04 10:16:41 INFO  utilities.Log - Cab 3: Name = Innova Crysta | Price = 72424 | Rating = 4.1/5
+2026-03-04 10:16:51 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:16:56 INFO  utilities.Log - Navigated to Cabs page.
+2026-03-04 10:16:56 INFO  utilities.Log - Trip Type Selected
+2026-03-04 10:16:57 INFO  utilities.Log - Selected From city: t nagar bus stop
+2026-03-04 10:16:58 INFO  utilities.Log - Selected departure date: 24 March 2026
+2026-03-04 10:16:58 INFO  utilities.Log - Rental hours selected: 3 hr
+2026-03-04 10:17:03 INFO  utilities.Log - Search button clicked.
+2026-03-04 10:17:03 INFO  utilities.Log - Cab Model selected: Innova Crysta
+2026-03-04 10:17:03 INFO  utilities.Log - Fuel Type selected: Diesel
+2026-03-04 10:17:03 INFO  utilities.Log - Available prices: 
+2026-03-04 10:17:03 INFO  utilities.Log - Lowest cab price: 1527
+2026-03-04 10:17:04 INFO  utilities.Log - Clicked Select Cab for price: 1527
+2026-03-04 10:17:14 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:17:16 INFO  utilities.Log - Navigated to Cabs page.
+2026-03-04 10:17:17 INFO  utilities.Log - Trip Type Selected
+2026-03-04 10:17:18 INFO  utilities.Log - Selected From city: pune international airport
+2026-03-04 10:17:19 INFO  utilities.Log - Selected To city: chhatrapati shivaji maharaj international airport road
+2026-03-04 10:17:20 INFO  utilities.Log - Selected departure date: 26 March 2026
+2026-03-04 10:17:27 INFO  utilities.Log - Search button clicked.
+2026-03-04 10:17:27 INFO  utilities.Log - Popup handled by clicking 'Okay'
+2026-03-04 10:17:27 INFO  utilities.Log - Cab Type selected: Sedan
+2026-03-04 10:17:27 INFO  utilities.Log - Available prices: 
+2026-03-04 10:17:27 INFO  utilities.Log - Lowest cab price: 1438
+2026-03-04 10:17:27 INFO  utilities.Log - Clicked Select Cab for price: 1438
+2026-03-04 10:17:29 INFO  utilities.Log - Validation PASSED → Expected: 2026-03-26 | Actual: 2026-03-26
+2026-03-04 10:17:37 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:17:42 INFO  utilities.Log - Navigated to Cabs page.
+2026-03-04 10:17:42 INFO  utilities.Log - Trip Type Selected
+2026-03-04 10:17:43 INFO  utilities.Log - Selected From city: t nagar bus stop
+2026-03-04 10:17:44 INFO  utilities.Log - Selected departure date: 24 March 2026
+2026-03-04 10:17:45 INFO  utilities.Log - Rental hours selected: 3 hr
+2026-03-04 10:17:49 INFO  utilities.Log - Search button clicked.
+2026-03-04 10:17:49 INFO  utilities.Log - Cab Model selected: Innova Crysta
+2026-03-04 10:17:49 INFO  utilities.Log - Fuel Type selected: Diesel
+2026-03-04 10:17:50 INFO  utilities.Log - Available prices: 
+2026-03-04 10:17:50 INFO  utilities.Log - Lowest cab price: 1527
+2026-03-04 10:17:50 INFO  utilities.Log - Clicked Select Cab for price: 1527
+2026-03-04 10:17:51 INFO  utilities.Log - Selected special request: Roof Carrier
+2026-03-04 10:17:51 INFO  utilities.Log - Price before Roof Carrier: 1835
+2026-03-04 10:17:51 INFO  utilities.Log - Price after Roof Carrier: 1993
+2026-03-04 10:18:00 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:18:02 INFO  utilities.Log - Navigated to Cabs page.
+2026-03-04 10:18:03 INFO  utilities.Log - Trip Type Selected
+2026-03-04 10:18:04 INFO  utilities.Log - Selected From city: delhi cantt
+2026-03-04 10:18:05 INFO  utilities.Log - Selected To city: manali, himachal pradesh
+2026-03-04 10:18:07 INFO  utilities.Log - Selected departure date: 26 March 2026
+2026-03-04 10:18:12 INFO  utilities.Log - Search button clicked.
+2026-03-04 10:18:12 INFO  utilities.Log - Available Car Types : 
+2026-03-04 10:18:22 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:18:22 INFO  utilities.Log - Starting Insurance Plan Workflow Test Case.
+2026-03-04 10:18:22 INFO  utilities.Log - Insurance Page initialized.
+2026-03-04 10:18:22 INFO  utilities.Log - Navigating to Insurance section via Header Tab.
+2026-03-04 10:18:24 INFO  utilities.Log - Selecting 'Thailand' from the destination list.
+2026-03-04 10:18:25 INFO  utilities.Log - Incrementing traveller count by 1.
+2026-03-04 10:18:25 INFO  utilities.Log - Clicking the 'View Plans' button.
+2026-03-04 10:18:25 INFO  utilities.Log - Scrolling through insurance plans to ensure visibility.
+2026-03-04 10:18:26 INFO  utilities.Log - Successfully reached the end of the plans list.
+2026-03-04 10:18:27 INFO  utilities.Log - Insurance Test Case 1 completed successfully.
+2026-03-04 10:18:33 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:18:33 INFO  utilities.Log - Starting TC010: Bus Search for Tomorrow Workflow
+2026-03-04 10:18:33 INFO  utilities.Log - Bus Booking Page initialized.
+2026-03-04 10:18:33 INFO  utilities.Log - Navigating to Bus Tab.
+2026-03-04 10:18:37 INFO  utilities.Log - Entering source city: Pune
+2026-03-04 10:18:38 INFO  utilities.Log - Entering destination city: Indore
+2026-03-04 10:18:39 INFO  utilities.Log - Selecting Tomorrow's date.
+2026-03-04 10:18:39 INFO  utilities.Log - Clicking Search button.
+2026-03-04 10:18:40 INFO  utilities.Log - Buses found: 5
+2026-03-04 10:18:40 INFO  utilities.Log - Total Buses available for tomorrow: 5
+2026-03-04 10:18:40 INFO  utilities.Log - TC010: Bus Search completed successfully.
+2026-03-04 10:18:47 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:18:47 INFO  utilities.Log - Starting TC011: Apply AC and Sleeper Filter Test
+2026-03-04 10:18:47 INFO  utilities.Log - Bus Booking Page initialized.
+2026-03-04 10:18:47 INFO  utilities.Log - Navigating to Bus Tab.
+2026-03-04 10:18:50 INFO  utilities.Log - Entering source city: Pune
+2026-03-04 10:18:51 INFO  utilities.Log - Entering destination city: Indore
+2026-03-04 10:18:52 INFO  utilities.Log - Selecting Tomorrow's date.
+2026-03-04 10:18:52 INFO  utilities.Log - Clicking Search button.
+2026-03-04 10:18:53 INFO  utilities.Log - Applying AC and Sleeper filters to the search results.
+2026-03-04 10:18:53 INFO  utilities.Log - Applying AC and Sleeper filters.
+2026-03-04 10:18:55 INFO  utilities.Log - Buses found: 46
+2026-03-04 10:18:55 INFO  utilities.Log - ===============================================
+2026-03-04 10:18:55 INFO  utilities.Log - FILTER RESULTS: AC + Sleeper
+2026-03-04 10:18:55 INFO  utilities.Log - Total Filtered Buses: 46
+2026-03-04 10:18:55 INFO  utilities.Log - ===============================================
+2026-03-04 10:18:55 INFO  utilities.Log - TC011: Filter test completed successfully.
+2026-03-04 10:19:02 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:19:02 INFO  utilities.Log - Starting TC012: Identify Fastest Bus Workflow
+2026-03-04 10:19:02 INFO  utilities.Log - Bus Booking Page initialized.
+2026-03-04 10:19:02 INFO  utilities.Log - Navigating to Bus Tab.
+2026-03-04 10:19:06 INFO  utilities.Log - Entering source city: Pune
+2026-03-04 10:19:07 INFO  utilities.Log - Entering destination city: Indore
+2026-03-04 10:19:08 INFO  utilities.Log - Selecting Tomorrow's date.
+2026-03-04 10:19:08 INFO  utilities.Log - Clicking Search button.
+2026-03-04 10:19:09 INFO  utilities.Log - Sorting by Duration (Fastest).
+2026-03-04 10:19:11 INFO  utilities.Log - ===============================================
+2026-03-04 10:19:11 INFO  utilities.Log - FASTEST BUS DETAILS
+2026-03-04 10:19:11 INFO  utilities.Log - Bus Name: Ishwar Tours And Travels | Travel Time: 11h 30m
+2026-03-04 10:19:11 INFO  utilities.Log - ===============================================
+2026-03-04 10:19:11 INFO  utilities.Log - TC012: Fastest bus identification completed successfully.
+2026-03-04 10:19:18 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:19:18 INFO  utilities.Log - Starting TC013: Highest Rated Bus Selection Workflow
+2026-03-04 10:19:18 INFO  utilities.Log - Bus Booking Page initialized.
+2026-03-04 10:19:18 INFO  utilities.Log - Navigating to Bus Tab.
+2026-03-04 10:19:21 INFO  utilities.Log - Entering source city: Pune
+2026-03-04 10:19:23 INFO  utilities.Log - Entering destination city: Indore
+2026-03-04 10:19:23 INFO  utilities.Log - Selecting Tomorrow's date.
+2026-03-04 10:19:24 INFO  utilities.Log - Clicking Search button.
+2026-03-04 10:19:24 INFO  utilities.Log - Applying 'Top Rated' filter from the sidebar.
+2026-03-04 10:19:24 INFO  utilities.Log - Applying Top Rated filter.
+2026-03-04 10:19:30 INFO  utilities.Log - Sorting results by 'RATING' descending.
+2026-03-04 10:19:30 INFO  utilities.Log - Sorting by Rating.
+2026-03-04 10:19:31 INFO  utilities.Log - ===============================================
+2026-03-04 10:19:31 INFO  utilities.Log - FINAL RESULT: TOP RATED BUS
+2026-03-04 10:19:31 INFO  utilities.Log - Bus Name: Raj Ratan Tours And Travels | Rating: 4.7 /5
+2026-03-04 10:19:31 INFO  utilities.Log - ===============================================
+2026-03-04 10:19:31 INFO  utilities.Log - TC013: Highest rating test completed successfully.
+2026-03-04 10:19:39 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:19:57 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:20:15 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:20:37 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:21:02 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:21:21 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:21:22 INFO  utilities.Log - Selected From city: Chennai
+2026-03-04 10:21:23 INFO  utilities.Log - Selected To city: Mumbai
+2026-03-04 10:21:25 INFO  utilities.Log - Selected Class: First Class
+2026-03-04 10:21:41 INFO  utilities.Log - 
+===========================================================================
+2026-03-04 10:21:41 INFO  utilities.Log - CLEANED FLIGHT RESULTS FOR: FIRST CLASS
+2026-03-04 10:21:41 INFO  utilities.Log - ===========================================================================
+2026-03-04 10:21:41 INFO  utilities.Log - AIRLINE            | FROM         | TO           | TIME       | PRICE     
+2026-03-04 10:21:41 INFO  utilities.Log - ---------------------------------------------------------------------------
+2026-03-04 10:21:41 INFO  utilities.Log - Air India          | Chennai      | Mumbai       | 06:15      | Rs. 5,524 
+2026-03-04 10:21:41 INFO  utilities.Log - Air India          | Chennai      | Mumbai       | 07:15      | Rs. 5,524 
+2026-03-04 10:21:41 INFO  utilities.Log - Air India          | Chennai      | Mumbai       | 09:35      | Rs. 5,524 
+2026-03-04 10:21:44 INFO  utilities.Log - Air India          | Chennai      | Mumbai       | 11:40      | Rs. 5,524 
+2026-03-04 10:21:44 INFO  utilities.Log - Air India          | Chennai      | Mumbai       | 15:45      | Rs. 5,524 
+2026-03-04 10:21:44 INFO  utilities.Log - Air India          | Chennai      | Mumbai       | 18:00      | Rs. 5,524 
+2026-03-04 10:21:44 INFO  utilities.Log - Air India          | Chennai      | Mumbai       | 21:10      | Rs. 5,524 
+2026-03-04 10:21:44 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 06:10      | Rs. 5,918 
+2026-03-04 10:21:48 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 04:55      | Rs. 5,925 
+2026-03-04 10:21:48 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 07:05      | Rs. 5,925 
+2026-03-04 10:21:48 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 09:10      | Rs. 5,925 
+2026-03-04 10:21:48 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 11:00      | Rs. 5,925 
+2026-03-04 10:21:48 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 12:45      | Rs. 5,925 
+2026-03-04 10:21:51 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 15:00      | Rs. 5,925 
+2026-03-04 10:21:51 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 16:40      | Rs. 5,925 
+2026-03-04 10:21:51 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 18:20      | Rs. 5,925 
+2026-03-04 10:21:51 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 20:10      | Rs. 5,925 
+2026-03-04 10:21:51 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 22:30      | Rs. 5,925 
+2026-03-04 10:21:51 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 07:00      | Rs. 7,938 
+2026-03-04 10:21:54 INFO  utilities.Log - Akasa Air          | Chennai      | Mumbai       | 13:35      | Rs. 16,192
+2026-03-04 10:22:01 INFO  utilities.Log - ---------------------------------------------------------------------------
+2026-03-04 10:22:01 INFO  utilities.Log - Total Unique Flights Found: 20
+2026-03-04 10:22:01 INFO  utilities.Log - Excel Report generated with 20 flights.
+2026-03-04 10:22:11 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:22:12 INFO  utilities.Log - Selected From city: Delhi
+2026-03-04 10:22:13 INFO  utilities.Log - Selected To city: Mumbai
+2026-03-04 10:22:32 INFO  utilities.Log - Student fare type selected successfully..!
+2026-03-04 10:22:42 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:22:43 INFO  utilities.Log - Selected From city: Chennai
+2026-03-04 10:22:44 INFO  utilities.Log - Selected To city: Mumbai
+2026-03-04 10:23:02 INFO  utilities.Log - 
+===========================================================================
+2026-03-04 10:23:02 INFO  utilities.Log - CLEANED FLIGHT RESULTS FOR: LATE NIGHT WINDOW
+2026-03-04 10:23:02 INFO  utilities.Log - ===========================================================================
+2026-03-04 10:23:02 INFO  utilities.Log - AIRLINE            | FROM         | TO           | TIME       | PRICE     
+2026-03-04 10:23:02 INFO  utilities.Log - ---------------------------------------------------------------------------
+2026-03-04 10:23:02 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 20:10      | Rs. 8,791 
+2026-03-04 10:23:02 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 21:10      | Rs. 8,796 
+2026-03-04 10:23:05 INFO  utilities.Log - IndiGo             | Chennai      | Mumbai       | 19:05      | Rs. 9,120 
+2026-03-04 10:23:11 INFO  utilities.Log - ---------------------------------------------------------------------------
+2026-03-04 10:23:11 INFO  utilities.Log - Total Unique Flights Found: 3
+2026-03-04 10:23:11 INFO  utilities.Log - Excel Report generated for TC053 with 3 filtered flights.
+2026-03-04 10:23:22 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:23:23 INFO  utilities.Log - Selected From city: Chennai
+2026-03-04 10:23:23 INFO  utilities.Log - Selected To city: Mumbai
+2026-03-04 10:23:51 INFO  utilities.Log - Login popup closed.
+2026-03-04 10:23:52 INFO  utilities.Log - Selected From city: Delhi
+2026-03-04 10:23:52 INFO  utilities.Log - Selected To city: Mumbai
+2026-03-04 10:24:10 INFO  utilities.Log - Applied filter for: Air India
+2026-03-04 10:24:10 INFO  utilities.Log - Successfully verified Air India specific filtering..!

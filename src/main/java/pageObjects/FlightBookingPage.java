@@ -225,7 +225,7 @@ public class FlightBookingPage {
                 } catch (Exception ignored) {}
             }
             common.scrollByPixels(1000);
-            try { Thread.sleep(3000); } catch (InterruptedException e) { e.printStackTrace(); }
+            common.waitFor(3000);
             if (totalFlightsFound > 30) break;
         }
         Log.info("---------------------------------------------------------------------------");
