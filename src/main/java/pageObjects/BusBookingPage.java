@@ -124,7 +124,7 @@ public class BusBookingPage {
             String duration = common.visible(firstBusDuration).getText().trim();
             return "Bus Name: " + name + " | Travel Time: " + duration;
         } catch (Exception e) {
-            Log.error("Failed to extract bus details: " + e.getMessage());
+            Log.info("Failed to extract bus details: " + e.getMessage());
             return "Could not extract bus details.";
         }
     }
@@ -142,7 +142,7 @@ public class BusBookingPage {
             String rating = common.visible(firstBusRating).getText().replaceAll("\\s+", " ").trim();
             return "Bus Name: " + name + " | Rating: " + rating;
         } catch (Exception e) {
-            Log.error("Error retrieving top-rated bus: " + e.getMessage());
+            Log.info("Error retrieving top-rated bus: " + e.getMessage());
             return "Could not retrieve bus details.";
         }
     }
