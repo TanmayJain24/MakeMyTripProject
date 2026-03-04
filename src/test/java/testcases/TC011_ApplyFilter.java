@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.BusBookingPage;
 import utilities.ScreenshotUtility;
-import utilities.Log; // Using your Log utility
+import utilities.Log;
 import java.time.Duration;
 
 public class TC011_ApplyFilter extends BaseTest {

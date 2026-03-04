@@ -9,13 +9,13 @@ import utilities.ConfigReader;
 
 public class TC018_InvalidUserDetails extends BaseTest {
     @Test
-    public void invalidUserDetailsTest() throws InterruptedException {
+    public void invalidUserDetailsTest() {
         GiftCardPage gift = new GiftCardPage(driver, wait);
         gift.openGiftCardSection();
         gift.clickGiftCard();
-        String name   = ConfigReader.getProperty("invalid.name");
+        String name = ConfigReader.getProperty("invalid.name");
         String mobile = ConfigReader.getProperty("invalid.mobile");
-        String email  = ConfigReader.getProperty("invalid.email");
+        String email = ConfigReader.getProperty("invalid.email");
         String uiError = gift.userDetailsInvalid(name, mobile, email);
         ScreenshotUtility.takeScreenShot(driver, "InvalidUserDetails");
         Assert.assertTrue(uiError.length() > 0, "Email error message should be visible");

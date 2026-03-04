@@ -4,7 +4,7 @@ import basetest.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.BusBookingPage;
-import utilities.Log; // Using your Log utility
+import utilities.Log;
 import java.time.Duration;
 
 public class TC013_HighestRating extends BaseTest {

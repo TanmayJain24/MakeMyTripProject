@@ -9,9 +9,9 @@ import utilities.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TC019_Cheapest_Flight_Search_Results extends BaseTest {
+public class TC019_CheapestFlightSearchResults extends BaseTest {
     @Test
-    public void search_flights_results() {
+    public void cheapestFlightSearchResultsTest() {
         FlightBookingPage fp = new FlightBookingPage(driver, wait);
         boolean fromStatus = fp.selectFromCity("Chennai");
         Assert.assertTrue(fromStatus, "Departure city 'Chennai' selection failed!");

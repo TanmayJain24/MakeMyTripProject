@@ -4,7 +4,6 @@ import basetest.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.CabBookingPage;
-
 import java.util.List;
 
 public class TC003_SearchCabs extends BaseTest {

@@ -8,7 +8,7 @@ import utilities.ConfigReader;
 
 public class TC017_ValidUserDetails extends BaseTest {
     @Test
-    public void UserDetails() throws InterruptedException {
+    public void validUserDetailsTest() {
         GiftCardPage gift = new GiftCardPage(driver, wait);
         gift.openGiftCardSection();
         gift.clickGiftCard();

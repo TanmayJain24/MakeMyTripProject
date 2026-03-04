@@ -8,9 +8,8 @@ import utilities.ExcelUtil;
 import java.util.List;
 
 public class TC015_PrintGiftCards extends BaseTest {
-
     @Test
-    public void printCards() {
+    public void printGiftCardsTest() {
         GiftCardPage gift = new GiftCardPage(driver, wait);
         gift.openGiftCardSection();
         List<String> titles = gift.getGiftCardTitles();

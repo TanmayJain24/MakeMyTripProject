@@ -8,7 +8,7 @@ import utilities.ScreenshotUtility;
 
 public class TC020_StudentFareValidation extends BaseTest {
     @Test
-    public void validateStudentFareSelection() {
+    public void validateStudentFareSelectionTest() {
         FlightBookingPage fp = new FlightBookingPage(driver, wait);
         fp.selectFromCity("Delhi");
         fp.selectToCity("Mumbai");

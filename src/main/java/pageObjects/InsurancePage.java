@@ -4,7 +4,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.CommonCode;
-import utilities.Log; // Importing your custom Log class
+import utilities.Log;
 import java.time.Duration;
 
 public class InsurancePage {

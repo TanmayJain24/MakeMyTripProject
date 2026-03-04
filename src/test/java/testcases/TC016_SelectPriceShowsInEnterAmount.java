@@ -8,7 +8,7 @@ import utilities.ScreenshotUtility;
 
 public class TC016_SelectPriceShowsInEnterAmount extends BaseTest {
     @Test
-    public void selectPriceShow() throws InterruptedException {
+    public void selectPriceShow() {
         GiftCardPage gift = new GiftCardPage(driver , wait);
         gift.openGiftCardSection();
         gift.clickGiftCard();

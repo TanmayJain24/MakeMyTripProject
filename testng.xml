@@ -23,7 +23,7 @@
             <class name="testcases.TC016_SelectPriceShowsInEnterAmount"/>
             <class name="testcases.TC017_ValidUserDetails"/>
             <class name="testcases.TC018_InvalidUserDetails"/>
-            <class name="testcases.TC019_Cheapest_Flight_Search_Results"/>
+            <class name="testcases.TC019_CheapestFlightSearchResults"/>
             <class name="testcases.TC020_StudentFareValidation"/>
             <class name="testcases.TC021_TimeBasedFlightSearch"/>
             <class name="testcases.TC022_ApplyNonStop"/>

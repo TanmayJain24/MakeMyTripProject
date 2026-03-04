@@ -4,12 +4,12 @@ import basetest.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.BusBookingPage;
-import utilities.Log; // Using your custom Log class
+import utilities.Log;
 import java.time.Duration;
 
 public class TC010_BusCount extends BaseTest {
     @Test
-    public void testBusSearchForTomorrow() {
+    public void busCountTest() {
         Log.info("Starting TC010: Bus Search for Tomorrow Workflow");
         BusBookingPage busPage = new BusBookingPage(driver, Duration.ofSeconds(20));
         busPage.navigateToBuses();
